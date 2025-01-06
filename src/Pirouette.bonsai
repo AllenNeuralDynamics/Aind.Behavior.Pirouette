@@ -1,477 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:onix1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
-                 xmlns:commutator="clr-namespace:OpenEphys.Commutator;assembly=OpenEphys.Commutator"
-                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
-                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
-                 xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
-                 xmlns:spk="clr-namespace:Bonsai.Spinnaker;assembly=Bonsai.Spinnaker"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:onix1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Onix</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:CreateContext">
-                <onix1:Driver>riffa</onix1:Driver>
-                <onix1:Index>0</onix1:Index>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:ConfigureBreakoutBoard">
-                <onix1:Name>BreakoutBoard</onix1:Name>
-                <onix1:Heartbeat>
-                  <onix1:DeviceName>BreakoutBoard/Heartbeat</onix1:DeviceName>
-                  <onix1:DeviceAddress>0</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                  <onix1:BeatsPerSecond>1000</onix1:BeatsPerSecond>
-                </onix1:Heartbeat>
-                <onix1:AnalogIO>
-                  <onix1:DeviceName>BreakoutBoard/AnalogIO</onix1:DeviceName>
-                  <onix1:DeviceAddress>6</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                  <onix1:InputRange0>TenVolts</onix1:InputRange0>
-                  <onix1:InputRange1>TenVolts</onix1:InputRange1>
-                  <onix1:InputRange2>TenVolts</onix1:InputRange2>
-                  <onix1:InputRange3>TenVolts</onix1:InputRange3>
-                  <onix1:InputRange4>TenVolts</onix1:InputRange4>
-                  <onix1:InputRange5>TenVolts</onix1:InputRange5>
-                  <onix1:InputRange6>TenVolts</onix1:InputRange6>
-                  <onix1:InputRange7>TenVolts</onix1:InputRange7>
-                  <onix1:InputRange8>TenVolts</onix1:InputRange8>
-                  <onix1:InputRange9>TenVolts</onix1:InputRange9>
-                  <onix1:InputRange10>TenVolts</onix1:InputRange10>
-                  <onix1:InputRange11>TenVolts</onix1:InputRange11>
-                  <onix1:Direction0>Input</onix1:Direction0>
-                  <onix1:Direction1>Input</onix1:Direction1>
-                  <onix1:Direction2>Input</onix1:Direction2>
-                  <onix1:Direction3>Input</onix1:Direction3>
-                  <onix1:Direction4>Input</onix1:Direction4>
-                  <onix1:Direction5>Input</onix1:Direction5>
-                  <onix1:Direction6>Input</onix1:Direction6>
-                  <onix1:Direction7>Input</onix1:Direction7>
-                  <onix1:Direction8>Input</onix1:Direction8>
-                  <onix1:Direction9>Input</onix1:Direction9>
-                  <onix1:Direction10>Input</onix1:Direction10>
-                  <onix1:Direction11>Input</onix1:Direction11>
-                </onix1:AnalogIO>
-                <onix1:DigitalIO>
-                  <onix1:DeviceName>BreakoutBoard/DigitalIO</onix1:DeviceName>
-                  <onix1:DeviceAddress>7</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                </onix1:DigitalIO>
-                <onix1:ClockOutput>
-                  <onix1:DeviceName>BreakoutBoard/OutputClock</onix1:DeviceName>
-                  <onix1:DeviceAddress>5</onix1:DeviceAddress>
-                  <onix1:ClockGate>false</onix1:ClockGate>
-                  <onix1:Frequency>1000000</onix1:Frequency>
-                  <onix1:DutyCycle>50</onix1:DutyCycle>
-                  <onix1:Delay>0</onix1:Delay>
-                </onix1:ClockOutput>
-                <onix1:HarpInput>
-                  <onix1:DeviceName>BreakoutBoard/HarpSyncInput</onix1:DeviceName>
-                  <onix1:DeviceAddress>12</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                  <onix1:Source>Breakout</onix1:Source>
-                </onix1:HarpInput>
-                <onix1:MemoryMonitor>
-                  <onix1:DeviceName>BreakoutBoard/MemoryMonitor</onix1:DeviceName>
-                  <onix1:DeviceAddress>10</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                  <onix1:SamplesPerSecond>10</onix1:SamplesPerSecond>
-                </onix1:MemoryMonitor>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:ConfigureNeuropixelsV2eHeadstage">
-                <onix1:Name>NeuropixelsV2eHeadstage</onix1:Name>
-                <onix1:NeuropixelsV2e>
-                  <onix1:DeviceName>NeuropixelsV2eHeadstage/NeuropixelsV2e</onix1:DeviceName>
-                  <onix1:DeviceAddress>256</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                </onix1:NeuropixelsV2e>
-                <onix1:Bno055>
-                  <onix1:DeviceName>NeuropixelsV2eHeadstage/PolledBno055</onix1:DeviceName>
-                  <onix1:DeviceAddress>257</onix1:DeviceAddress>
-                  <onix1:Enable>true</onix1:Enable>
-                  <onix1:AxisMap>ZXY</onix1:AxisMap>
-                  <onix1:AxisSign>Default</onix1:AxisSign>
-                </onix1:Bno055>
-                <onix1:Port>PortA</onix1:Port>
-                <onix1:PortVoltage xsi:nil="true" />
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:StartAcquisition">
-                <onix1:ReadSize>2048</onix1:ReadSize>
-                <onix1:WriteSize>2048</onix1:WriteSize>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:PolledBno055Data">
-                <onix1:DeviceName>NeuropixelsV2eHeadstage/NeuropixelsV2eBno055</onix1:DeviceName>
-                <onix1:PolledRegisters>All</onix1:PolledRegisters>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="rx:PublishSubject">
-              <Name>BnoData</Name>
-            </Expression>
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Commutator</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="port:CreateSerialPort">
-                <port:Name>Commutator</port:Name>
-                <port:BaudRate>9600</port:BaudRate>
-                <port:NewLine>\r\n</port:NewLine>
-                <port:Parity>None</port:Parity>
-                <port:ParityReplace>63</port:ParityReplace>
-                <port:DataBits>8</port:DataBits>
-                <port:StopBits>One</port:StopBits>
-                <port:Handshake>None</port:Handshake>
-                <port:DiscardNull>false</port:DiscardNull>
-                <port:DtrEnable>true</port:DtrEnable>
-                <port:RtsEnable>false</port:RtsEnable>
-                <port:ReadBufferSize>8192</port:ReadBufferSize>
-                <port:WriteBufferSize>2048</port:WriteBufferSize>
-                <port:ReceivedBytesThreshold>1</port:ReceivedBytesThreshold>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Double">
-              <rx:Name>CommutatorTurns</rx:Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionCondition">
-              <scr:Name>DropInvalid</scr:Name>
-              <scr:Expression>!(double.IsNan(it) or it==0 or double.IsInfinity(it))</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Format">
-              <Format>{{turn : {0}}}</Format>
-              <Selector>it</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="LedEnable" Description="If true, the commutator's LED will show status information. Otherwise, it will turn off." />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="BooleanProperty">
-                <Value>false</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>it ? "{led: true}" : "{led: false}"</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="port:SerialWriteLine">
-                <port:PortName>Commutator</port:PortName>
-                <port:NewLine>\r\n</port:NewLine>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>BnoData</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Quaternion</Selector>
-            </Expression>
-            <Expression xsi:type="rx:PublishSubject">
-              <Name>QuaternionData</Name>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>AutoCommutator</Name>
-              <Description>Control an Open Ephys commutator by using rotation angle measurements.</Description>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="RotationAxis" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="commutator:QuaternionToTwist">
-                      <commutator:RotationAxis>
-                        <commutator:X>0</commutator:X>
-                        <commutator:Y>0</commutator:Y>
-                        <commutator:Z>1</commutator:Z>
-                      </commutator:RotationAxis>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="rx:PublishSubject">
-                    <Name>UnwindAngle</Name>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionCondition">
-                    <scr:Name>ExcludeNaN</scr:Name>
-                    <scr:Expression>!double.IsNan(it)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="rx:Accumulate" />
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Interval" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:SampleInterval">
-                      <rx:Interval>PT0.333S</rx:Interval>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="dsp:Difference">
-                      <dsp:Order>1</dsp:Order>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="2" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source2" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="7" Label="Source1" />
-                  <Edge From="6" To="7" Label="Source2" />
-                  <Edge From="7" To="8" Label="Source1" />
-                  <Edge From="8" To="9" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>CommutatorTurns</Name>
-            </Expression>
-            <Expression xsi:type="rx:Accumulate" />
-            <Expression xsi:type="rx:BehaviorSubject">
-              <Name>AccumulatedCommutatorTurns</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="wie:KeyDown">
-                <wie:Filter>Up</wie:Filter>
-                <wie:SuppressRepetitions>true</wie:SuppressRepetitions>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="DoubleProperty">
-                <Value>0.1</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="wie:KeyDown">
-                <wie:Filter>Down</wie:Filter>
-                <wie:SuppressRepetitions>true</wie:SuppressRepetitions>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="DoubleProperty">
-                <Value>-0.1</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>CommutatorTurns</Name>
-            </Expression>
-          </Nodes>
-          <Edges>
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="7" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="7" Label="Source2" />
-            <Edge From="7" To="8" Label="Source1" />
-            <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source1" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="20" Label="Source1" />
-            <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="20" Label="Source2" />
-            <Edge From="20" To="21" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Magnetometer</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="PortName" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="port:CreateSerialPort">
-                <port:Name>MagneticEncoder</port:Name>
-                <port:PortName>COM10</port:PortName>
-                <port:BaudRate>115200</port:BaudRate>
-                <port:NewLine>\r\n</port:NewLine>
-                <port:Parity>None</port:Parity>
-                <port:ParityReplace>63</port:ParityReplace>
-                <port:DataBits>8</port:DataBits>
-                <port:StopBits>One</port:StopBits>
-                <port:Handshake>None</port:Handshake>
-                <port:DiscardNull>false</port:DiscardNull>
-                <port:DtrEnable>true</port:DtrEnable>
-                <port:RtsEnable>false</port:RtsEnable>
-                <port:ReadBufferSize>4096</port:ReadBufferSize>
-                <port:WriteBufferSize>2048</port:WriteBufferSize>
-                <port:ReceivedBytesThreshold>1</port:ReceivedBytesThreshold>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="port:SerialReadLine">
-                <port:PortName>MagneticEncoder</port:PortName>
-                <port:NewLine />
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Parse">
-              <Pattern>%d</Pattern>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="num:DegreeToRadian" />
-            </Expression>
-            <Expression xsi:type="rx:PublishSubject">
-              <Name>MagnetEncoderData</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>MagnetEncoderData</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Difference">
-                <dsp:Order>1</dsp:Order>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Name>Wrap2pi</scr:Name>
-              <scr:Expression>((it + 3*Math.Pi) % (2*Math.Pi)) - Math.Pi</scr:Expression>
-            </Expression>
-            <Expression xsi:type="rx:Accumulate" />
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Name>NormalizeToTurns</scr:Name>
-              <scr:Expression>it / (Math.Pi * 2)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="rx:PublishSubject">
-              <Name>AccumulatedMagnetTurns</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>AccumulatedCommutatorTurns</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="Subtract" />
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Interval" DisplayName="CorrectionSamplingInterval" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT2S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="TurnDifferenceThreshold" />
-            </Expression>
-            <Expression xsi:type="rx:Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="dsp:Abs" />
-                  </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Value" />
-                  </Expression>
-                  <Expression xsi:type="GreaterThan">
-                    <Operand xsi:type="DoubleProperty">
-                      <Value>1</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="3" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source2" />
-                  <Edge From="3" To="4" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="rx:PublishSubject">
-              <Name>CommutatorCorrection</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>CommutatorTurns</Name>
-            </Expression>
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="13" Label="Source1" />
-            <Edge From="12" To="13" Label="Source2" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="16" Label="Source1" />
-            <Edge From="15" To="16" Label="Source2" />
-            <Edge From="16" To="18" Label="Source1" />
-            <Edge From="17" To="18" Label="Source2" />
-            <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="20" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Camera</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SerialNumber" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="spk:SpinnakerCapture">
-                <spk:Index xsi:nil="true" />
-                <spk:SerialNumber>23373883</spk:SerialNumber>
-                <spk:ColorProcessing>Default</spk:ColorProcessing>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="rx:PublishSubject">
-              <Name>TopView</Name>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
       <Expression xsi:type="rx:Defer">
         <Name>Logging</Name>
         <Workflow>
@@ -655,6 +192,34 @@
           </Edges>
         </Workflow>
       </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Hardware</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\Onix.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\Commutator.bonsai">
+              <PortName />
+              <LedEnable>false</LedEnable>
+              <RotationAxis>
+                <X>0</X>
+                <Y>0</Y>
+                <Z>1</Z>
+              </RotationAxis>
+              <Interval>PT0.333S</Interval>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\Magnetometer.bonsai">
+              <PortName />
+              <CorrectionSamplingInterval>PT2S</CorrectionSamplingInterval>
+              <TurnDifferenceThreshold>1</TurnDifferenceThreshold>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\Camera.bonsai">
+              <SerialNumber />
+              <Frequency>20</Frequency>
+            </Expression>
+          </Nodes>
+          <Edges />
+        </Workflow>
+      </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>AccumulatedCommutatorTurns</Name>
       </Expression>
@@ -682,12 +247,12 @@
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="5" To="9" Label="Source1" />
-      <Edge From="6" To="9" Label="Source2" />
+      <Edge From="2" To="6" Label="Source1" />
+      <Edge From="3" To="6" Label="Source2" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source3" />
+      <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="9" Label="Source3" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="11" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
