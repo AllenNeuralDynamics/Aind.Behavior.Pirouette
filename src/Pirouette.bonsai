@@ -5,6 +5,7 @@
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:p2="clr-namespace:AindBehaviorPirouetteDataSchema.Session;assembly=Extensions"
                  xmlns:p3="clr-namespace:AindBehaviorPirouetteDataSchema.TaskLogic;assembly=Extensions"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -49,7 +50,7 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="rx:AsyncSubject">
-              <Name>SubjectSchema</Name>
+              <Name>SessionSchema</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>RawTaskLogicSchema</Name>
@@ -164,8 +165,214 @@
       <Expression xsi:type="rx:Defer">
         <Name>Logging</Name>
         <Workflow>
-          <Nodes />
-          <Edges />
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SessionSchema</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>RootPath</Selector>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Path" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogController.bonsai">
+              <Path>data</Path>
+              <ChunkSize>1</ChunkSize>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TriggeredCamerasStream</Name>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>LogVideos</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:AsyncSubject">
+                    <Name>this</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>this</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>CameraFrameRate</Name>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="FrameRate" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>this</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Key</Selector>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="LogName" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+                    <Heartbeats />
+                    <ClosingDuration xsi:nil="true" />
+                    <LogName>VideoData</LogName>
+                    <FrameRate>50</FrameRate>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="9" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="9" Label="Source2" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source3" />
+                  <Edge From="9" To="10" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WhiteRabbitEvents</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpDemux.bonsai">
+              <LogName>OutputExpander</LogName>
+              <Heartbeats>Heartbeats</Heartbeats>
+              <ClosingDuration>PT2S</ClosingDuration>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>OutputExpanderEvents</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpDemux.bonsai">
+              <LogName>OutputExpander</LogName>
+              <Heartbeats>Heartbeats</Heartbeats>
+              <ClosingDuration>PT2S</ClosingDuration>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CommutatorTurns</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>HarpTimestamp</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Seconds</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats>Heartbeats</Heartbeats>
+              <ClosingDuration>PT2S</ClosingDuration>
+              <LogName>CommutatorTurns</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>AccumulatedCommutatorTurns</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>HarpTimestamp</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Seconds</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats>Heartbeats</Heartbeats>
+              <ClosingDuration>PT2S</ClosingDuration>
+              <LogName>AccumulatedCommutatorTurns</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CommutatorCorrection</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>HarpTimestamp</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Seconds</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats>Heartbeats</Heartbeats>
+              <ClosingDuration>PT2S</ClosingDuration>
+              <LogName>CommutatorCorrection</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>AccumulatedMagnetTurns</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>HarpTimestamp</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Seconds</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats>Heartbeats</Heartbeats>
+              <ClosingDuration>PT2S</ClosingDuration>
+              <LogName>AccumulatedMagnetTurns</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="11" To="14" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="14" Label="Source2" />
+            <Edge From="14" To="15" Label="Source1" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="17" To="20" Label="Source1" />
+            <Edge From="18" To="19" Label="Source1" />
+            <Edge From="19" To="20" Label="Source2" />
+            <Edge From="20" To="21" Label="Source1" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="23" To="26" Label="Source1" />
+            <Edge From="24" To="25" Label="Source1" />
+            <Edge From="25" To="26" Label="Source2" />
+            <Edge From="26" To="27" Label="Source1" />
+            <Edge From="27" To="28" Label="Source1" />
+            <Edge From="29" To="32" Label="Source1" />
+            <Edge From="30" To="31" Label="Source1" />
+            <Edge From="31" To="32" Label="Source2" />
+            <Edge From="32" To="33" Label="Source1" />
+            <Edge From="33" To="34" Label="Source1" />
+          </Edges>
         </Workflow>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
