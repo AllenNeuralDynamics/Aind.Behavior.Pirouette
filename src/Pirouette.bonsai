@@ -302,6 +302,51 @@
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
+              <Name>OnixHarpSyncData</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>HarpTimestamp</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Seconds</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration>PT2S</ClosingDuration>
+              <LogName>OnixHarpSyncData</LogName>
+              <Selector />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>BnoData</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>HarpTimestamp</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Seconds</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration>PT2S</ClosingDuration>
+              <LogName>OnixBNO055Data</LogName>
+              <Selector />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>OnixNeuropixelData</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
               <Name>CommutatorCorrection</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -372,6 +417,16 @@
             <Edge From="31" To="32" Label="Source2" />
             <Edge From="32" To="33" Label="Source1" />
             <Edge From="33" To="34" Label="Source1" />
+            <Edge From="36" To="39" Label="Source1" />
+            <Edge From="37" To="38" Label="Source1" />
+            <Edge From="38" To="39" Label="Source2" />
+            <Edge From="39" To="40" Label="Source1" />
+            <Edge From="40" To="41" Label="Source1" />
+            <Edge From="42" To="45" Label="Source1" />
+            <Edge From="43" To="44" Label="Source1" />
+            <Edge From="44" To="45" Label="Source2" />
+            <Edge From="45" To="46" Label="Source1" />
+            <Edge From="46" To="47" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
