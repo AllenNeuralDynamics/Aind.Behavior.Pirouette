@@ -5,7 +5,7 @@
 //----------------------
 
 
-namespace AindVrForagingDataSchema.TaskLogic
+namespace AindBehaviorPirouetteDataSchema.TaskLogic
 {
     #pragma warning disable // Disable all warnings
 

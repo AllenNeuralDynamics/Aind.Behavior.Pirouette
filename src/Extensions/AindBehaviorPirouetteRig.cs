@@ -5,7 +5,7 @@
 //----------------------
 
 
-namespace AindVrForagingDataSchema.Rig
+namespace AindBehaviorPirouetteDataSchema.Rig
 {
     #pragma warning disable // Disable all warnings
 
@@ -1065,7 +1065,7 @@ namespace AindVrForagingDataSchema.Rig
     
         private int _binning = 1;
     
-        private SpinnakerCameraColorProcessing _colorProcessing = AindVrForagingDataSchema.Rig.SpinnakerCameraColorProcessing.Default;
+        private SpinnakerCameraColorProcessing _colorProcessing = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraColorProcessing.Default;
     
         private int _exposure = 1000;
     
@@ -1073,9 +1073,9 @@ namespace AindVrForagingDataSchema.Rig
     
         private double? _gamma;
     
-        private SpinnakerCameraAdcBitDepth? _adcBitDepth = AindVrForagingDataSchema.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
+        private SpinnakerCameraAdcBitDepth? _adcBitDepth = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
     
-        private SpinnakerCameraPixelFormat? _pixelFormat = AindVrForagingDataSchema.Rig.SpinnakerCameraPixelFormat.Mono8;
+        private SpinnakerCameraPixelFormat? _pixelFormat = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraPixelFormat.Mono8;
     
         private Rect _regionOfInterest;
     

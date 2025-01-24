@@ -5,7 +5,7 @@
 //----------------------
 
 
-namespace AindVrForagingDataSchema.Session
+namespace AindBehaviorPirouetteDataSchema.Session
 {
     #pragma warning disable // Disable all warnings
 

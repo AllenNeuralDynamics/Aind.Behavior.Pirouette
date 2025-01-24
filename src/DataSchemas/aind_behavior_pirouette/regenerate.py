@@ -13,7 +13,7 @@ import aind_behavior_pirouette.task_logic
 
 SCHEMA_ROOT = Path("./src/DataSchemas/")
 EXTENSIONS_ROOT = Path("./src/Extensions/")
-NAMESPACE_PREFIX = "AindVrForagingDataSchema"
+NAMESPACE_PREFIX = "AindBehaviorPirouetteDataSchema"
 
 
 def main():
