@@ -97,6 +97,14 @@
           <onix1:PortVoltage xsi:nil="true" />
         </Combinator>
       </Expression>
+<Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix1:ConfigureHarpSyncInput">
+          <onix1:DeviceName />
+          <onix1:DeviceAddress>12</onix1:DeviceAddress>
+          <onix1:Enable>true</onix1:Enable>
+          <onix1:Source>Breakout</onix1:Source>
+        </Combinator>
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:StartAcquisition">
           <onix1:ReadSize>2048</onix1:ReadSize>
@@ -126,16 +134,26 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>NeuropixelData</Name>
+        <Name>OnixNeuropixelData</Name>
+</Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix1:HarpSyncInputData">
+          <onix1:DeviceName>BreakoutBoard/HarpSyncInput</onix1:DeviceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>OnixHarpSyncData</Name>
       </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
-      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
