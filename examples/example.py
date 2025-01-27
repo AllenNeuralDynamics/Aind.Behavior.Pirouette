@@ -9,7 +9,7 @@ def mock_session():
     return session.AindBehaviorSessionModel(
         experiment="RunningTests",
         experimenter=["Carl Schoonover"],
-        root_path="C:\Data",
+        root_path=r"C:\Data",
         allow_dirty_repo=True,
         skip_hardware_validation=True,
         subject="TestSubject",
