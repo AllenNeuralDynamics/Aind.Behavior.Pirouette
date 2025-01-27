@@ -37,6 +37,10 @@ class HarpOutputExpander(rig.HarpDeviceGeneric):
     who_am_i: Literal[1108] = 1108
 
 
+class RobocopyController(BaseModel):
+    remote_path: str = Field(..., description="Remote path to copy files to.")
+
+
 class AindBehaviorPirouetteRig(rig.AindBehaviorRigModel):
     version: Literal[__version__] = __version__
     triggered_camera_controller: rig.CameraController[rig.SpinnakerCamera] = Field(
@@ -45,3 +49,4 @@ class AindBehaviorPirouetteRig(rig.AindBehaviorRigModel):
     harp_white_rabbit: rig.HarpWhiteRabbit = Field(..., description="Harp white rabbit")
     harp_output_expander: HarpOutputExpander = Field(..., description="Harp output expander")
     onix_commutator: OnixCommutator = Field(..., description="Onix commutator")
+    robocopy_controller: RobocopyController = Field(..., description="Robocopy controller")

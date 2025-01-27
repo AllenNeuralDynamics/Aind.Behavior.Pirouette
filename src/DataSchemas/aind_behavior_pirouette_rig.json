@@ -352,6 +352,20 @@
       "title": "Rect",
       "type": "object"
     },
+    "RobocopyController": {
+      "properties": {
+        "remote_path": {
+          "description": "Remote path to copy files to.",
+          "title": "Remote Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "remote_path"
+      ],
+      "title": "RobocopyController",
+      "type": "object"
+    },
     "SpinnakerCamera": {
       "properties": {
         "device_type": {
@@ -946,6 +960,10 @@
     "onix_commutator": {
       "$ref": "#/definitions/OnixCommutator",
       "description": "Onix commutator"
+    },
+    "robocopy_controller": {
+      "$ref": "#/definitions/RobocopyController",
+      "description": "Robocopy controller"
     }
   },
   "required": [
@@ -953,7 +971,8 @@
     "triggered_camera_controller",
     "harp_white_rabbit",
     "harp_output_expander",
-    "onix_commutator"
+    "onix_commutator",
+    "robocopy_controller"
   ],
   "title": "AindBehaviorPirouetteRig",
   "type": "object"

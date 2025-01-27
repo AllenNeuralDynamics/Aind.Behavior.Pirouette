@@ -1052,6 +1052,71 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    public partial class RobocopyController
+    {
+    
+        private string _remotePath;
+    
+        public RobocopyController()
+        {
+        }
+    
+        protected RobocopyController(RobocopyController other)
+        {
+            _remotePath = other._remotePath;
+        }
+    
+        /// <summary>
+        /// Remote path to copy files to.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("remote_path", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Remote path to copy files to.")]
+        public string RemotePath
+        {
+            get
+            {
+                return _remotePath;
+            }
+            set
+            {
+                _remotePath = value;
+            }
+        }
+    
+        public System.IObservable<RobocopyController> Process()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new RobocopyController(this)));
+        }
+    
+        public System.IObservable<RobocopyController> Process<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new RobocopyController(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("remote_path = " + _remotePath);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.CombinatorAttribute()]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     public partial class SpinnakerCamera
     {
     
@@ -2222,6 +2287,8 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     
         private OnixCommutator _onixCommutator = new OnixCommutator();
     
+        private RobocopyController _robocopyController = new RobocopyController();
+    
         public AindBehaviorPirouetteRig()
         {
         }
@@ -2236,6 +2303,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             _harpWhiteRabbit = other._harpWhiteRabbit;
             _harpOutputExpander = other._harpOutputExpander;
             _onixCommutator = other._onixCommutator;
+            _robocopyController = other._robocopyController;
         }
     
         [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
@@ -2370,6 +2438,24 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
+        /// <summary>
+        /// Robocopy controller
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("robocopy_controller", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("Robocopy controller")]
+        public RobocopyController RobocopyController
+        {
+            get
+            {
+                return _robocopyController;
+            }
+            set
+            {
+                _robocopyController = value;
+            }
+        }
+    
         public System.IObservable<AindBehaviorPirouetteRig> Process()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindBehaviorPirouetteRig(this)));
@@ -2389,7 +2475,8 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             stringBuilder.Append("triggered_camera_controller = " + _triggeredCameraController + ", ");
             stringBuilder.Append("harp_white_rabbit = " + _harpWhiteRabbit + ", ");
             stringBuilder.Append("harp_output_expander = " + _harpOutputExpander + ", ");
-            stringBuilder.Append("onix_commutator = " + _onixCommutator);
+            stringBuilder.Append("onix_commutator = " + _onixCommutator + ", ");
+            stringBuilder.Append("robocopy_controller = " + _robocopyController);
             return true;
         }
     
@@ -2654,6 +2741,11 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             return Process<Rect>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<RobocopyController> source)
+        {
+            return Process<RobocopyController>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<SpinnakerCamera> source)
         {
             return Process<SpinnakerCamera>(source);
@@ -2701,6 +2793,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<HarpWhiteRabbit>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<OnixCommutator>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Rect>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RobocopyController>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<SpinnakerCamera>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Vector3>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriter>))]
