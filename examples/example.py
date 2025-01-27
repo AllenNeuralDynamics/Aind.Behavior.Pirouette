@@ -1,7 +1,24 @@
 import os
 
-from aind_behavior_pirouette import rig
+from aind_behavior_pirouette import rig, task_logic
 from aind_behavior_services import rig as abs_rig
+from aind_behavior_services import session as session
+
+
+def mock_session():
+    return session.AindBehaviorSessionModel(
+        experiment="RunningTests",
+        experimenter=["Carl Schoonover"],
+        root_path="C:\Data",
+        allow_dirty_repo=True,
+        skip_hardware_validation=True,
+        subject="TestSubject",
+        experiment_version="0.0.0",
+    )
+
+
+def mock_task_logic():
+    return task_logic.AindBehaviorPirouetteTaskLogic(task_parameters=task_logic.AindBehaviorPirouetteTaskParameters())
 
 
 def mock_rig():
@@ -27,11 +44,12 @@ def mock_rig():
 
 
 def main(path_seed: str = "./local/{schema}.json"):
-    model = mock_rig()
     os.makedirs(os.path.dirname(path_seed), exist_ok=True)
 
-    with open(path_seed.format(schema=model.__class__.__name__), "w", encoding="utf-8") as f:
-        f.write(model.model_dump_json(indent=2))
+    models = [mock_rig(), mock_task_logic(), mock_session()]
+    for model in models:
+        with open(path_seed.format(schema=model.__class__.__name__), "w", encoding="utf-8") as f:
+            f.write(model.model_dump_json(indent=2))
 
 
 if __name__ == "__main__":
