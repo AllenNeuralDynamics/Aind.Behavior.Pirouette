@@ -1,0 +1,1 @@
+"./bonsai/bonsai.exe" "./src/Pirouette.bonsai" -p TaskLogicPath="..\local\AindBehaviorPirouetteTaskLogic.json" -p RigPath="..\local\AindBehaviorPirouetteRig.json" -p SessionPath="..\local\AindBehaviorSessionModel.json"
