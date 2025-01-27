@@ -274,7 +274,8 @@
     "OnixCommutator": {
       "properties": {
         "device_type": {
-          "description": "Device type",
+          "const": "OnixCommutator",
+          "default": "OnixCommutator",
           "title": "Device Type",
           "type": "string"
         },
@@ -312,7 +313,6 @@
         }
       },
       "required": [
-        "device_type",
         "port_name"
       ],
       "title": "OnixCommutator",

@@ -797,7 +797,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     public partial class OnixCommutator
     {
     
-        private string _deviceType;
+        private string _deviceType = "OnixCommutator";
     
         private CommutatorSettings _additionalSettings;
     
@@ -817,11 +817,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             _portName = other._portName;
         }
     
-        /// <summary>
-        /// Device type
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("device_type", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("Device type")]
+        [Newtonsoft.Json.JsonPropertyAttribute("device_type")]
         public string DeviceType
         {
             get

@@ -27,6 +27,7 @@ class CommutatorSettings(BaseModel):
 
 
 class OnixCommutator(rig.Device):
+    device_type: Literal["OnixCommutator"] = "OnixCommutator"
     port_name: str = Field(..., description="Commutator COM port name.")
     additional_settings: CommutatorSettings = Field(
         default=CommutatorSettings(), description="Additional settings for the commutator.", validate_default=True
