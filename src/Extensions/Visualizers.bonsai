@@ -10,7 +10,7 @@
         <VisualizerType xsi:type="TypeMapping" TypeArguments="gui:TableLayoutPanelVisualizer" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TriggeredCamerasStream</Name>
+        <Name>CamerasStream</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core.Design:SpinnakerCameraControllerVisualizer.bonsai" />
       <Expression xsi:type="VisualizerMapping">

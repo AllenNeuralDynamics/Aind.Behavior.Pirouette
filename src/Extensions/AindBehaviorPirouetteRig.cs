@@ -2275,7 +2275,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     
         private string _rigName;
     
-        private CameraControllerSpinnakerCamera _triggeredCameraController = new CameraControllerSpinnakerCamera();
+        private CameraControllerSpinnakerCamera _cameraController = new CameraControllerSpinnakerCamera();
     
         private HarpWhiteRabbit _harpWhiteRabbit = new HarpWhiteRabbit();
     
@@ -2295,7 +2295,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             _version = other._version;
             _computerName = other._computerName;
             _rigName = other._rigName;
-            _triggeredCameraController = other._triggeredCameraController;
+            _cameraController = other._cameraController;
             _harpWhiteRabbit = other._harpWhiteRabbit;
             _harpOutputExpander = other._harpOutputExpander;
             _onixCommutator = other._onixCommutator;
@@ -2366,17 +2366,17 @@ namespace AindBehaviorPirouetteDataSchema.Rig
         /// Required camera controller to triggered cameras.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggered_camera_controller", Required=Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonPropertyAttribute("camera_controller", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("Required camera controller to triggered cameras.")]
-        public CameraControllerSpinnakerCamera TriggeredCameraController
+        public CameraControllerSpinnakerCamera CameraController
         {
             get
             {
-                return _triggeredCameraController;
+                return _cameraController;
             }
             set
             {
-                _triggeredCameraController = value;
+                _cameraController = value;
             }
         }
     
@@ -2468,7 +2468,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             stringBuilder.Append("version = " + _version + ", ");
             stringBuilder.Append("computer_name = " + _computerName + ", ");
             stringBuilder.Append("rig_name = " + _rigName + ", ");
-            stringBuilder.Append("triggered_camera_controller = " + _triggeredCameraController + ", ");
+            stringBuilder.Append("camera_controller = " + _cameraController + ", ");
             stringBuilder.Append("harp_white_rabbit = " + _harpWhiteRabbit + ", ");
             stringBuilder.Append("harp_output_expander = " + _harpOutputExpander + ", ");
             stringBuilder.Append("onix_commutator = " + _onixCommutator + ", ");

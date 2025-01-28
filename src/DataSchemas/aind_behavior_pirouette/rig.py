@@ -44,7 +44,7 @@ class RobocopyController(BaseModel):
 
 class AindBehaviorPirouetteRig(rig.AindBehaviorRigModel):
     version: Literal[__version__] = __version__
-    triggered_camera_controller: rig.CameraController[rig.SpinnakerCamera] = Field(
+    camera_controller: rig.CameraController[rig.SpinnakerCamera] = Field(
         ..., description="Required camera controller to triggered cameras."
     )
     harp_white_rabbit: rig.HarpWhiteRabbit = Field(..., description="Harp white rabbit")

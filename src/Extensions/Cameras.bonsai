@@ -21,10 +21,10 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="MemberSelector">
-        <Selector>TriggeredCameraController</Selector>
+        <Selector>CameraController</Selector>
       </Expression>
       <Expression xsi:type="rx:AsyncSubject">
-        <Name>TriggeredCameraController</Name>
+        <Name>CameraController</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>FrameRate.Value</Selector>
@@ -68,7 +68,7 @@
         <Name>FrameEvent</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TriggeredCameraController</Name>
+        <Name>CameraController</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Cameras</Selector>
@@ -97,7 +97,7 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>TriggeredCamerasInitialized</Name>
+              <Name>CamerasInitialized</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Take">
@@ -237,11 +237,11 @@
         <rx:ElementSelector>Item1</rx:ElementSelector>
       </Expression>
       <Expression xsi:type="rx:ReplaySubject">
-        <Name>TriggeredCamerasStream</Name>
+        <Name>CamerasStream</Name>
         <rx:BufferSize xsi:nil="true" />
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Boolean">
-        <rx:Name>TriggeredCamerasInitialized</rx:Name>
+        <rx:Name>CamerasInitialized</rx:Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="IntProperty">
@@ -250,7 +250,7 @@
       </Expression>
       <Expression xsi:type="rx:Accumulate" />
       <Expression xsi:type="SubscribeSubject">
-        <Name>TriggeredCameraController</Name>
+        <Name>CameraController</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Cameras</Selector>
@@ -292,7 +292,7 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>TriggeredCamerasReady</Name>
+        <Name>CamerasReady</Name>
       </Expression>
     </Nodes>
     <Edges>

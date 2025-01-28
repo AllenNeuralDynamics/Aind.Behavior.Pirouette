@@ -945,7 +945,7 @@
       "title": "Rig Name",
       "type": "string"
     },
-    "triggered_camera_controller": {
+    "camera_controller": {
       "$ref": "#/definitions/CameraController_SpinnakerCamera_",
       "description": "Required camera controller to triggered cameras."
     },
@@ -968,7 +968,7 @@
   },
   "required": [
     "rig_name",
-    "triggered_camera_controller",
+    "camera_controller",
     "harp_white_rabbit",
     "harp_output_expander",
     "onix_commutator",
