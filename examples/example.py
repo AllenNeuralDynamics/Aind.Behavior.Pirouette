@@ -32,12 +32,13 @@ def mock_rig():
                     binning=1,
                     exposure=10000,
                     gain=0,
+                    adc_bit_depth=abs_rig.SpinnakerCameraAdcBitDepth.ADC10BIT,
                     video_writer=None,  # video writer is not yet implemented via custom dsl
                 )
             },
         ),
         harp_output_expander=rig.HarpOutputExpander(port_name="COM14"),
-        harp_white_rabbit=abs_rig.HarpWhiteRabbit(port_name="COM10"),
+        harp_white_rabbit=abs_rig.HarpWhiteRabbit(port_name="COM15"),
         onix_commutator=rig.OnixCommutator(port_name="COM4", additional_settings=rig.CommutatorSettings()),
         robocopy_controller=rig.RobocopyController(remote_path=r"\\allen\aind\scratch\pirouette\data"),
     )
