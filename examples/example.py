@@ -24,7 +24,7 @@ def mock_task_logic():
 def mock_rig():
     return rig.AindBehaviorPirouetteRig(
         rig_name="PIROUETTE-01",
-        triggered_camera_controller=abs_rig.CameraController[abs_rig.SpinnakerCamera](
+        camera_controller=abs_rig.CameraController[abs_rig.SpinnakerCamera](
             frame_rate=60,
             cameras={
                 "TopCamera": abs_rig.SpinnakerCamera(
