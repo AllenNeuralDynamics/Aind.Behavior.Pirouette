@@ -83,6 +83,7 @@
           <onix1:NeuropixelsV2e>
             <onix1:DeviceName>NeuropixelsV2eHeadstage/NeuropixelsV2e</onix1:DeviceName>
             <onix1:DeviceAddress>256</onix1:DeviceAddress>
+            <onix1:Enable>true</onix1:Enable>
             <onix1:Enable>false</onix1:Enable>
             <onix1:GainCalibrationFileA>C:\Users\Administrador\OneDrive - Allen Institute\Documents\testing\22420013984_gainCalValues.csv</onix1:GainCalibrationFileA>
           </onix1:NeuropixelsV2e>
@@ -97,21 +98,13 @@
           <onix1:PortVoltage xsi:nil="true" />
         </Combinator>
       </Expression>
-<Expression xsi:type="Combinator">
-        <Combinator xsi:type="onix1:ConfigureHarpSyncInput">
-          <onix1:DeviceName />
-          <onix1:DeviceAddress>12</onix1:DeviceAddress>
-          <onix1:Enable>true</onix1:Enable>
-          <onix1:Source>Breakout</onix1:Source>
-        </Combinator>
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:StartAcquisition">
           <onix1:ReadSize>2048</onix1:ReadSize>
           <onix1:WriteSize>2048</onix1:WriteSize>
         </Combinator>
       </Expression>
-<Expression xsi:type="Combinator">
+      <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
           <rx:DueTime>PT0S</rx:DueTime>
           <rx:Period>PT0.02S</rx:Period>
@@ -135,7 +128,7 @@
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
         <Name>OnixNeuropixelData</Name>
-</Expression>
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:HarpSyncInputData">
           <onix1:DeviceName>BreakoutBoard/HarpSyncInput</onix1:DeviceName>
@@ -149,11 +142,10 @@
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
-      <Edge From="6" To="7" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
-      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
