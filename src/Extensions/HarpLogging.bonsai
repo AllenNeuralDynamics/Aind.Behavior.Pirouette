@@ -8,7 +8,7 @@
         <Name>WhiteRabbitEvents</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpDemux.bonsai">
-        <LogName>OutputExpander</LogName>
+        <LogName>WhiteRabbit</LogName>
         <Heartbeats>Heartbeats</Heartbeats>
         <ClosingDuration>PT2S</ClosingDuration>
       </Expression>
