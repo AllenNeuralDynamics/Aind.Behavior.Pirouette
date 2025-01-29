@@ -33,7 +33,7 @@ def mock_rig():
                     exposure=10000,
                     gain=0,
                     adc_bit_depth=abs_rig.SpinnakerCameraAdcBitDepth.ADC10BIT,
-                    video_writer=None,  # video writer is not yet implemented via custom dsl
+                    video_writer=abs_rig.VideoWriterFfmpeg(frame_rate=60),
                 )
             },
         ),
