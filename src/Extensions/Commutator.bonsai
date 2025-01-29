@@ -57,7 +57,7 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>BnoData</Name>
+        <Name>OnixBno055Data</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Quaternion</Selector>
