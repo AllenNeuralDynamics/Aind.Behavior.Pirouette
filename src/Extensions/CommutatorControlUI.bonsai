@@ -31,7 +31,7 @@
               <zg:IndexSelector>Seconds</zg:IndexSelector>
               <zg:ValueSelector>Value</zg:ValueSelector>
               <zg:SymbolType>None</zg:SymbolType>
-              <zg:LineWidth>1</zg:LineWidth>
+              <zg:LineWidth>3</zg:LineWidth>
               <zg:CurveSettings>
                 <zg:CurveConfiguration>
                   <zg:Label>AccCommTurns</zg:Label>
@@ -62,7 +62,7 @@
               <zg:IndexSelector>Seconds</zg:IndexSelector>
               <zg:ValueSelector>Value</zg:ValueSelector>
               <zg:SymbolType>None</zg:SymbolType>
-              <zg:LineWidth>1</zg:LineWidth>
+              <zg:LineWidth>3</zg:LineWidth>
               <zg:CurveSettings>
                 <zg:CurveConfiguration>
                   <zg:Label>AccMagnetTurns</zg:Label>
@@ -74,16 +74,16 @@
               <zg:Max xsi:nil="true" />
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="zg:GraphPanelBuilder">
-              <zg:Name>CommutatorOnlineQc</zg:Name>
+            <Expression xsi:type="zg:RollingGraphPanelBuilder">
+              <zg:Name>CommutatorQC</zg:Name>
               <zg:ReverseX>false</zg:ReverseX>
               <zg:ReverseY>false</zg:ReverseY>
-              <zg:Span>30</zg:Span>
+              <zg:Span xsi:nil="true" />
               <zg:Capacity xsi:nil="true" />
-              <zg:XMin xsi:nil="true" />
-              <zg:XMax xsi:nil="true" />
-              <zg:YMin xsi:nil="true" />
-              <zg:YMax xsi:nil="true" />
+              <zg:BaseAxis>X</zg:BaseAxis>
+              <zg:BarType>Cluster</zg:BarType>
+              <zg:Min xsi:nil="true" />
+              <zg:Max xsi:nil="true" />
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
