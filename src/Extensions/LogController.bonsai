@@ -28,7 +28,7 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="aeon:FormatDate" />
       </Expression>
-      <Expression xsi:type="rx:AsyncSubject">
+      <Expression xsi:type="rx:BehaviorSubject">
         <Name>SubPathDate</Name>
       </Expression>
       <Expression xsi:type="Combinator">

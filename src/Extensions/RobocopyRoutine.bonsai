@@ -72,6 +72,7 @@
                   </Expression>
                   <Expression xsi:type="Format">
                     <Format>{0}/{1}</Format>
+                    <Selector>Item1,Item2</Selector>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
                     <PropertyMappings>
@@ -80,9 +81,9 @@
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="p1:StartRobocopy">
-                      <p1:CreateLog>true</p1:CreateLog>
+                      <p1:CreateLog>false</p1:CreateLog>
                       <p1:Arguments>/MOV /E /DCOPY:DAT /R:5 /W:3 /tee</p1:Arguments>
-                      <p1:ProcessWindowStyle>Normal</p1:ProcessWindowStyle>
+                      <p1:ProcessWindowStyle>Hidden</p1:ProcessWindowStyle>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
