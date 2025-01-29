@@ -107,7 +107,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="VisualizerMapping">
-        <VisualizerType xsi:type="TypeMapping" TypeArguments="zg:GraphPanelVisualizer" />
+        <VisualizerType xsi:type="TypeMapping" TypeArguments="zg:RollingGraphPanelVisualizer" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>CommutatorButtons</Name>
@@ -200,7 +200,9 @@
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="VisualizerMapping">
+        <VisualizerType xsi:type="TypeMapping" TypeArguments="gui:TableLayoutPanelVisualizer" />
+      </Expression>
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
         <gui:Name>CommutatorControl</gui:Name>
         <gui:Enabled>true</gui:Enabled>
