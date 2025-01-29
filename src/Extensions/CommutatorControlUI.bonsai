@@ -79,7 +79,7 @@
               <zg:ReverseX>false</zg:ReverseX>
               <zg:ReverseY>false</zg:ReverseY>
               <zg:Span xsi:nil="true" />
-              <zg:Capacity xsi:nil="true" />
+              <zg:Capacity>60</zg:Capacity>
               <zg:BaseAxis>X</zg:BaseAxis>
               <zg:BarType>Cluster</zg:BarType>
               <zg:Min xsi:nil="true" />
