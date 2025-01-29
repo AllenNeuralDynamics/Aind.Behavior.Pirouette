@@ -317,7 +317,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats>Heartbeats</Heartbeats>
               <ClosingDuration>PT2S</ClosingDuration>
-              <LogName>Commutator/CommutatorTurns</LogName>
+              <LogName>CommutatorTurns</LogName>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -338,7 +338,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats>Heartbeats</Heartbeats>
               <ClosingDuration>PT2S</ClosingDuration>
-              <LogName>Commutator/AccumulatedCommutatorTurns</LogName>
+              <LogName>AccumulatedCommutatorTurns</LogName>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -417,7 +417,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats>Heartbeats</Heartbeats>
               <ClosingDuration>PT2S</ClosingDuration>
-              <LogName>Commutator/CommutatorCorrection</LogName>
+              <LogName>CommutatorCorrection</LogName>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -438,7 +438,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats>Heartbeats</Heartbeats>
               <ClosingDuration>PT2S</ClosingDuration>
-              <LogName>Commutator/AccumulatedMagnetTurns</LogName>
+              <LogName>AccumulatedMagnetTurns</LogName>
               <Selector xsi:nil="true" />
             </Expression>
           </Nodes>
