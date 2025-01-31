@@ -5,6 +5,7 @@
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:p2="clr-namespace:AindBehaviorPirouetteDataSchema.Session;assembly=Extensions"
                  xmlns:p3="clr-namespace:AindBehaviorPirouetteDataSchema.TaskLogic;assembly=Extensions"
+                 xmlns:onix="clr-namespace:OpenEphys.Onix;assembly=OpenEphys.Onix"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
@@ -95,7 +96,129 @@
         <Name>Hardware</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\Onix.bonsai" />
+            <Expression xsi:type="GroupWorkflow">
+              <Name>Onix</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix:CreateContext">
+                      <onix:Driver>riffa</onix:Driver>
+                      <onix:Index>0</onix:Index>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix:ConfigureBreakoutBoard">
+                      <onix:Name>BreakoutBoard</onix:Name>
+                      <onix:Heartbeat>
+                        <onix:DeviceName>BreakoutBoard/Heartbeat</onix:DeviceName>
+                        <onix:DeviceAddress>0</onix:DeviceAddress>
+                        <onix:Enable>true</onix:Enable>
+                        <onix:BeatsPerSecond>10</onix:BeatsPerSecond>
+                      </onix:Heartbeat>
+                      <onix:AnalogIO>
+                        <onix:DeviceName>BreakoutBoard/AnalogIO</onix:DeviceName>
+                        <onix:DeviceAddress>6</onix:DeviceAddress>
+                        <onix:Enable>true</onix:Enable>
+                        <onix:InputRange0>TenVolts</onix:InputRange0>
+                        <onix:InputRange1>TenVolts</onix:InputRange1>
+                        <onix:InputRange2>TenVolts</onix:InputRange2>
+                        <onix:InputRange3>TenVolts</onix:InputRange3>
+                        <onix:InputRange4>TenVolts</onix:InputRange4>
+                        <onix:InputRange5>TenVolts</onix:InputRange5>
+                        <onix:InputRange6>TenVolts</onix:InputRange6>
+                        <onix:InputRange7>TenVolts</onix:InputRange7>
+                        <onix:InputRange8>TenVolts</onix:InputRange8>
+                        <onix:InputRange9>TenVolts</onix:InputRange9>
+                        <onix:InputRange10>TenVolts</onix:InputRange10>
+                        <onix:InputRange11>TenVolts</onix:InputRange11>
+                        <onix:Direction0>Input</onix:Direction0>
+                        <onix:Direction1>Input</onix:Direction1>
+                        <onix:Direction2>Input</onix:Direction2>
+                        <onix:Direction3>Input</onix:Direction3>
+                        <onix:Direction4>Input</onix:Direction4>
+                        <onix:Direction5>Input</onix:Direction5>
+                        <onix:Direction6>Input</onix:Direction6>
+                        <onix:Direction7>Input</onix:Direction7>
+                        <onix:Direction8>Input</onix:Direction8>
+                        <onix:Direction9>Input</onix:Direction9>
+                        <onix:Direction10>Input</onix:Direction10>
+                        <onix:Direction11>Input</onix:Direction11>
+                      </onix:AnalogIO>
+                      <onix:MemoryMonitor>
+                        <onix:DeviceName>BreakoutBoard/MemoryMonitor</onix:DeviceName>
+                        <onix:DeviceAddress>10</onix:DeviceAddress>
+                        <onix:Enable>false</onix:Enable>
+                        <onix:SampleFrequency>10</onix:SampleFrequency>
+                      </onix:MemoryMonitor>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix:ConfigureHarpSyncInput">
+                      <onix:DeviceName>HarpSync</onix:DeviceName>
+                      <onix:DeviceAddress>12</onix:DeviceAddress>
+                      <onix:Enable>true</onix:Enable>
+                      <onix:Source>Breakout</onix:Source>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix:ConfigureNeuropixelsV2eHeadstage">
+                      <onix:Name>NeuropixelsV2eHeadstage</onix:Name>
+                      <onix:NeuropixelsV2>
+                        <onix:DeviceName>NeuropixelsV2eHeadstage/NeuropixelsV2e</onix:DeviceName>
+                        <onix:DeviceAddress>256</onix:DeviceAddress>
+                        <onix:Enable>true</onix:Enable>
+                      </onix:NeuropixelsV2>
+                      <onix:Bno055>
+                        <onix:DeviceName>NeuropixelsV2eHeadstage/NeuropixelsV2eBno055</onix:DeviceName>
+                        <onix:DeviceAddress>257</onix:DeviceAddress>
+                        <onix:Enable>true</onix:Enable>
+                      </onix:Bno055>
+                      <onix:Port>PortA</onix:Port>
+                      <onix:PortVoltage xsi:nil="true" />
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix:StartAcquisition">
+                      <onix:ReadSize>2048</onix:ReadSize>
+                      <onix:WriteSize>2048</onix:WriteSize>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix:Bno055Data">
+                      <onix:DeviceName>NeuropixelsV2eHeadstage/Bno055</onix:DeviceName>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="rx:PublishSubject">
+                    <Name>OnixBno055Data</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix:NeuropixelsV2eData">
+                      <onix:DeviceName>NeuropixelsV2eHeadstage/NeuropixelsV2e</onix:DeviceName>
+                      <onix:BufferSize>30</onix:BufferSize>
+                      <onix:ProbeIndex>ProbeA</onix:ProbeIndex>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="rx:PublishSubject">
+                    <Name>OnixNeuropixelData</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix:HarpSyncInputData" />
+                  </Expression>
+                  <Expression xsi:type="rx:PublishSubject">
+                    <Name>OnixHarpSyncData</Name>
+                  </Expression>
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\Commutator.bonsai" />
             <Expression xsi:type="GroupWorkflow">
               <Name>HarpDevices</Name>
