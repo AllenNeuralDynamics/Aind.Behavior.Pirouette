@@ -39,7 +39,7 @@ def mock_rig():
         ),
         harp_output_expander=rig.HarpOutputExpander(port_name="COM14"),
         harp_white_rabbit=abs_rig.HarpWhiteRabbit(port_name="COM15"),
-        onix_commutator=rig.OnixCommutator(port_name="COM4", additional_settings=rig.CommutatorSettings()),
+        onix_commutator=rig.OnixCommutator(port_name="COM4", additional_settings=rig.CommutatorSettings(magnetometer_turn_difference_threshold=0.75)),
         robocopy_controller=rig.RobocopyController(remote_path=r"\\allen\aind\scratch\pirouette\data"),
     )
 

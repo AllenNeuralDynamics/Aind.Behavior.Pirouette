@@ -27,31 +27,45 @@
         <LogName>OnixHarpSyncData</LogName>
         <Selector />
       </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>OnixBno055Data</Name>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="SubscribeSubject">
+          <Name>OnixBno055Data</Name>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:ObserveOn">
-          <rx:Scheduler>TaskPoolScheduler</rx:Scheduler>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:ObserveOn">
+            <rx:Scheduler>TaskPoolScheduler</rx:Scheduler>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>HarpTimestamp</Name>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="SubscribeSubject">
+          <Name>HarpTimestamp</Name>
+        </Builder>
       </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Seconds</Selector>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="MemberSelector">
+          <Selector>Seconds</Selector>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:WithLatestFrom" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:WithLatestFrom" />
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="harp:CreateTimestamped" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="harp:CreateTimestamped" />
+        </Builder>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-        <Heartbeats />
-        <ClosingDuration>PT2S</ClosingDuration>
-        <LogName>OnixBNO055Data</LogName>
-        <Selector />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+          <Heartbeats />
+          <ClosingDuration>PT2S</ClosingDuration>
+          <LogName>OnixBNO055Data</LogName>
+          <Selector />
+        </Builder>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>OnixNeuropixelData</Name>

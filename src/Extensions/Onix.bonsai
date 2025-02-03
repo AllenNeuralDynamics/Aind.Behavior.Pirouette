@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:onix1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1"
@@ -104,20 +104,26 @@
           <onix1:WriteSize>2048</onix1:WriteSize>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT0.02S</rx:Period>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:Timer">
+            <rx:DueTime>PT0S</rx:DueTime>
+            <rx:Period>PT0.02S</rx:Period>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="onix1:PolledBno055Data">
-          <onix1:DeviceName>NeuropixelsV2eHeadstage/PolledBno055</onix1:DeviceName>
-          <onix1:PolledRegisters>All</onix1:PolledRegisters>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="onix1:PolledBno055Data">
+            <onix1:DeviceName>NeuropixelsV2eHeadstage/PolledBno055</onix1:DeviceName>
+            <onix1:PolledRegisters>All</onix1:PolledRegisters>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>OnixBno055Data</Name>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="rx:PublishSubject">
+          <Name>OnixBno055Data</Name>
+        </Builder>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:NeuropixelsV2eData">
