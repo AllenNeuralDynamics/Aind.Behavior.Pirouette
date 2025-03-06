@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:onix1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1"
@@ -78,17 +78,15 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="onix1:ConfigureNeuropixelsV2eHeadstage">
-          <onix1:Name>NeuropixelsV2eHeadstage</onix1:Name>
+        <Combinator xsi:type="onix1:ConfigureHeadstageNeuropixelsV2e">
+          <onix1:Name>HeadstageNeuropixelsV2e</onix1:Name>
           <onix1:NeuropixelsV2e>
-            <onix1:DeviceName>NeuropixelsV2eHeadstage/NeuropixelsV2e</onix1:DeviceName>
+            <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
             <onix1:DeviceAddress>256</onix1:DeviceAddress>
             <onix1:Enable>true</onix1:Enable>
-            <onix1:Enable>false</onix1:Enable>
-            <onix1:GainCalibrationFileA>C:\Users\Administrador\OneDrive - Allen Institute\Documents\testing\22420013984_gainCalValues.csv</onix1:GainCalibrationFileA>
           </onix1:NeuropixelsV2e>
           <onix1:Bno055>
-            <onix1:DeviceName>NeuropixelsV2eHeadstage/PolledBno055</onix1:DeviceName>
+            <onix1:DeviceName>HeadstageNeuropixelsV2e/PolledBno055</onix1:DeviceName>
             <onix1:DeviceAddress>257</onix1:DeviceAddress>
             <onix1:Enable>true</onix1:Enable>
             <onix1:AxisMap>ZXY</onix1:AxisMap>
@@ -127,7 +125,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:NeuropixelsV2eData">
-          <onix1:DeviceName>NeuropixelsV2eHeadstage/NeuropixelsV2e</onix1:DeviceName>
+          <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
           <onix1:BufferSize>30</onix1:BufferSize>
           <onix1:ProbeIndex>ProbeA</onix1:ProbeIndex>
         </Combinator>
