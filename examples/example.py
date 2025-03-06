@@ -8,7 +8,7 @@ from aind_behavior_services import session as session
 def mock_session():
     return session.AindBehaviorSessionModel(
         experiment="RunningTests",
-        experimenter=["Carl Schoonover"],
+        experimenter=["Brandon Pratt"],
         root_path=r"C:\Data",
         allow_dirty_repo=True,
         skip_hardware_validation=True,
@@ -23,12 +23,12 @@ def mock_task_logic():
 
 def mock_rig():
     return rig.AindBehaviorPirouetteRig(
-        rig_name="PIROUETTE-01",
+        rig_name="PIROUETTE-02",
         camera_controller=abs_rig.CameraController[abs_rig.SpinnakerCamera](
             frame_rate=60,
             cameras={
                 "TopCamera": abs_rig.SpinnakerCamera(
-                    serial_number="23373883",
+                    serial_number="23373886",
                     binning=1,
                     exposure=10000,
                     gain=0,
@@ -37,10 +37,14 @@ def mock_rig():
                 )
             },
         ),
-        harp_output_expander=rig.HarpOutputExpander(port_name="COM14"),
-        harp_white_rabbit=abs_rig.HarpWhiteRabbit(port_name="COM15"),
-        onix_commutator=rig.OnixCommutator(port_name="COM4", additional_settings=rig.CommutatorSettings(magnetometer_turn_difference_threshold=0.75)),
-        robocopy_controller=rig.RobocopyController(remote_path=r"\\allen\aind\scratch\pirouette\data"),
+        harp_output_expander=rig.HarpOutputExpander(port_name="COM5"),
+        harp_white_rabbit=abs_rig.HarpWhiteRabbit(port_name="COM3"),
+        onix_commutator=rig.OnixCommutator(
+            port_name="COM4",
+            additional_settings=rig.CommutatorSettings(
+                magnetometer_turn_difference_threshold=0.75,
+                magnetometer_override_sampling=0.5)),
+        robocopy_controller=rig.RobocopyController(remote_path=r"\\allen\aind\stage\chronic"),
     )
 
 

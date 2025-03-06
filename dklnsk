@@ -1,0 +1,141 @@
+[1mdiff --git a/src/Extensions/Commutator.bonsai b/src/Extensions/Commutator.bonsai[m
+[1mindex 87a5e43..179b78a 100644[m
+[1m--- a/src/Extensions/Commutator.bonsai[m
+[1m+++ b/src/Extensions/Commutator.bonsai[m
+[36m@@ -23,7 +23,7 @@[m
+       <Expression xsi:type="Combinator">[m
+         <Combinator xsi:type="port:CreateSerialPort">[m
+           <port:Name>Commutator</port:Name>[m
+[31m-          <port:PortName />[m
+[32m+[m[32m          <port:PortName>COM4</port:PortName>[m
+           <port:BaudRate>9600</port:BaudRate>[m
+           <port:NewLine>\r\n</port:NewLine>[m
+           <port:Parity>None</port:Parity>[m
+[36m@@ -152,9 +152,22 @@[m
+           <Name>CommutatorTurns</Name>[m
+         </Builder>[m
+       </Expression>[m
+[32m+[m[32m      <Expression xsi:type="Combinator">[m
+[32m+[m[32m        <Combinator xsi:type="DoubleProperty">[m
+[32m+[m[32m          <Value>0</Value>[m
+[32m+[m[32m        </Combinator>[m
+[32m+[m[32m      </Expression>[m
+[32m+[m[32m      <Expression xsi:type="Combinator">[m
+[32m+[m[32m        <Combinator xsi:type="rx:Take">[m
+[32m+[m[32m          <rx:Count>1</rx:Count>[m
+[32m+[m[32m        </Combinator>[m
+[32m+[m[32m      </Expression>[m
+       <Expression xsi:type="SubscribeSubject">[m
+         <Name>CommutatorTurns</Name>[m
+       </Expression>[m
+[32m+[m[32m      <Expression xsi:type="Combinator">[m
+[32m+[m[32m        <Combinator xsi:type="rx:Merge" />[m
+[32m+[m[32m      </Expression>[m
+       <Expression xsi:type="rx:Accumulate" />[m
+       <Expression xsi:type="rx:BehaviorSubject">[m
+         <Name>AccumulatedCommutatorTurns</Name>[m
+[36m@@ -184,7 +197,10 @@[m
+       <Edge From="22" To="23" Label="Source3" />[m
+       <Edge From="23" To="24" Label="Source1" />[m
+       <Edge From="25" To="26" Label="Source1" />[m
+[31m-      <Edge From="26" To="27" Label="Source1" />[m
+[32m+[m[32m      <Edge From="26" To="28" Label="Source1" />[m
+[32m+[m[32m      <Edge From="27" To="28" Label="Source2" />[m
+[32m+[m[32m      <Edge From="28" To="29" Label="Source1" />[m
+[32m+[m[32m      <Edge From="29" To="30" Label="Source1" />[m
+     </Edges>[m
+   </Workflow>[m
+ </WorkflowBuilder>[m
+\ No newline at end of file[m
+[1mdiff --git a/src/Extensions/Magnetometer.bonsai b/src/Extensions/Magnetometer.bonsai[m
+[1mindex b9b9c37..52fc24c 100644[m
+[1m--- a/src/Extensions/Magnetometer.bonsai[m
+[1m+++ b/src/Extensions/Magnetometer.bonsai[m
+[36m@@ -43,6 +43,9 @@[m
+       <Expression xsi:type="p1:Parse">[m
+         <harp:Register xsi:type="p1:MagneticEncoder" />[m
+       </Expression>[m
+[32m+[m[32m      <Expression xsi:type="rx:PublishSubject">[m
+[32m+[m[32m        <Name>MagnetometerRawData</Name>[m
+[32m+[m[32m      </Expression>[m
+       <Expression xsi:type="SubscribeSubject">[m
+         <Name>RigSchema</Name>[m
+       </Expression>[m
+[36m@@ -123,6 +126,13 @@[m
+       <Expression xsi:type="rx:PublishSubject">[m
+         <Name>AccumulatedMagnetTurns</Name>[m
+       </Expression>[m
+[32m+[m[32m      <Expression xsi:type="SubscribeSubject">[m
+[32m+[m[32m        <Name>AccumulatedCommutatorTurns</Name>[m
+[32m+[m[32m      </Expression>[m
+[32m+[m[32m      <Expression xsi:type="Combinator">[m
+[32m+[m[32m        <Combinator xsi:type="rx:CombineLatest" />[m
+[32m+[m[32m      </Expression>[m
+[32m+[m[32m      <Expression xsi:type="Subtract" />[m
+       <Expression xsi:type="SubscribeSubject">[m
+         <Name>RigSchema</Name>[m
+       </Expression>[m
+[36m@@ -179,7 +189,7 @@[m
+             </Expression>[m
+             <Expression xsi:type="GreaterThan">[m
+               <Operand xsi:type="DoubleProperty">[m
+[31m-                <Value>1</Value>[m
+[32m+[m[32m                <Value>0.75</Value>[m
+               </Operand>[m
+             </Expression>[m
+             <Expression xsi:type="WorkflowOutput" />[m
+[36m@@ -206,35 +216,39 @@[m
+       <Edge From="3" To="4" Label="Source1" />[m
+       <Edge From="4" To="5" Label="Source1" />[m
+       <Edge From="6" To="7" Label="Source1" />[m
+[31m-      <Edge From="7" To="13" Label="Source1" />[m
+[31m-      <Edge From="8" To="9" Label="Source1" />[m
+[32m+[m[32m      <Edge From="7" To="8" Label="Source1" />[m
+[32m+[m[32m      <Edge From="8" To="14" Label="Source1" />[m
+       <Edge From="9" To="10" Label="Source1" />[m
+       <Edge From="10" To="11" Label="Source1" />[m
+       <Edge From="11" To="12" Label="Source1" />[m
+[31m-      <Edge From="12" To="13" Label="Source2" />[m
+[31m-      <Edge From="13" To="14" Label="Source1" />[m
+[32m+[m[32m      <Edge From="12" To="13" Label="Source1" />[m
+[32m+[m[32m      <Edge From="13" To="14" Label="Source2" />[m
+       <Edge From="14" To="15" Label="Source1" />[m
+       <Edge From="15" To="16" Label="Source1" />[m
+[31m-      <Edge From="17" To="18" Label="Source1" />[m
+[32m+[m[32m      <Edge From="16" To="17" Label="Source1" />[m
+       <Edge From="18" To="19" Label="Source1" />[m
+       <Edge From="19" To="20" Label="Source1" />[m
+       <Edge From="20" To="21" Label="Source1" />[m
+       <Edge From="21" To="22" Label="Source1" />[m
+[31m-      <Edge From="22" To="29" Label="Source1" />[m
+[31m-      <Edge From="23" To="24" Label="Source1" />[m
+[31m-      <Edge From="24" To="25" Label="Source1" />[m
+[32m+[m[32m      <Edge From="22" To="23" Label="Source1" />[m
+[32m+[m[32m      <Edge From="23" To="25" Label="Source1" />[m
+[32m+[m[32m      <Edge From="24" To="25" Label="Source2" />[m
+       <Edge From="25" To="26" Label="Source1" />[m
+[31m-      <Edge From="26" To="27" Label="Source1" />[m
+[32m+[m[32m      <Edge From="26" To="33" Label="Source1" />[m
+       <Edge From="27" To="28" Label="Source1" />[m
+[31m-      <Edge From="28" To="29" Label="Source2" />[m
+[31m-      <Edge From="29" To="35" Label="Source1" />[m
+[32m+[m[32m      <Edge From="28" To="29" Label="Source1" />[m
+[32m+[m[32m      <Edge From="29" To="30" Label="Source1" />[m
+       <Edge From="30" To="31" Label="Source1" />[m
+       <Edge From="31" To="32" Label="Source1" />[m
+[31m-      <Edge From="32" To="33" Label="Source1" />[m
+[31m-      <Edge From="33" To="34" Label="Source1" />[m
+[31m-      <Edge From="34" To="35" Label="Source2" />[m
+[32m+[m[32m      <Edge From="32" To="33" Label="Source2" />[m
+[32m+[m[32m      <Edge From="33" To="39" Label="Source1" />[m
+[32m+[m[32m      <Edge From="34" To="35" Label="Source1" />[m
+       <Edge From="35" To="36" Label="Source1" />[m
+       <Edge From="36" To="37" Label="Source1" />[m
+[32m+[m[32m      <Edge From="37" To="38" Label="Source1" />[m
+[32m+[m[32m      <Edge From="38" To="39" Label="Source2" />[m
+[32m+[m[32m      <Edge From="39" To="40" Label="Source1" />[m
+[32m+[m[32m      <Edge From="40" To="41" Label="Source1" />[m
+     </Edges>[m
+   </Workflow>[m
+ </WorkflowBuilder>[m
+\ No newline at end of file[m
