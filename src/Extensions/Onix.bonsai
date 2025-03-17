@@ -98,30 +98,24 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:StartAcquisition">
-          <onix1:ReadSize>2048</onix1:ReadSize>
+          <onix1:ReadSize>2560</onix1:ReadSize>
           <onix1:WriteSize>2048</onix1:WriteSize>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:Timer">
-            <rx:DueTime>PT0S</rx:DueTime>
-            <rx:Period>PT0.02S</rx:Period>
-          </Combinator>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT0.02S</rx:Period>
+        </Combinator>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="onix1:PolledBno055Data">
-            <onix1:DeviceName>NeuropixelsV2eHeadstage/PolledBno055</onix1:DeviceName>
-            <onix1:PolledRegisters>All</onix1:PolledRegisters>
-          </Combinator>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix1:PolledBno055Data">
+          <onix1:DeviceName>HeadstageNeuropixelsV2e/PolledBno055</onix1:DeviceName>
+          <onix1:PolledRegisters>All</onix1:PolledRegisters>
+        </Combinator>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="rx:PublishSubject">
-          <Name>OnixBno055Data</Name>
-        </Builder>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>OnixBno055Data</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:NeuropixelsV2eData">
@@ -141,6 +135,14 @@
       <Expression xsi:type="rx:PublishSubject">
         <Name>OnixHarpSyncData</Name>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix1:MemoryMonitorData">
+          <onix1:DeviceName>BreakoutBoard/MemoryMonitor</onix1:DeviceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>PercentUsed</Selector>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -150,6 +152,7 @@
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
