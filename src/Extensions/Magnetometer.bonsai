@@ -189,7 +189,7 @@
             </Expression>
             <Expression xsi:type="GreaterThan">
               <Operand xsi:type="DoubleProperty">
-                <Value>0.75</Value>
+                <Value>2</Value>
               </Operand>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -201,9 +201,6 @@
             <Edge From="3" To="4" Label="Source1" />
           </Edges>
         </Workflow>
-      </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>CommutatorCorrection</Name>
       </Expression>
       <Expression xsi:type="MulticastSubject">
         <Name>CommutatorTurns</Name>
@@ -248,7 +245,6 @@
       <Edge From="37" To="38" Label="Source1" />
       <Edge From="38" To="39" Label="Source2" />
       <Edge From="39" To="40" Label="Source1" />
-      <Edge From="40" To="41" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

@@ -59,32 +59,6 @@
         <Selector xsi:nil="true" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>CommutatorCorrection</Name>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:ObserveOn">
-          <rx:Scheduler>TaskPoolScheduler</rx:Scheduler>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>HarpTimestamp</Name>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Seconds</Selector>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:WithLatestFrom" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="harp:CreateTimestamped" />
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-        <Heartbeats>Heartbeats</Heartbeats>
-        <ClosingDuration>PT2S</ClosingDuration>
-        <LogName>Commutator_CommutatorCorrection</LogName>
-        <Selector xsi:nil="true" />
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
         <Name>AccumulatedMagnetTurns</Name>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -130,12 +104,6 @@
       <Edge From="17" To="18" Label="Source2" />
       <Edge From="18" To="19" Label="Source1" />
       <Edge From="19" To="20" Label="Source1" />
-      <Edge From="21" To="22" Label="Source1" />
-      <Edge From="22" To="25" Label="Source1" />
-      <Edge From="23" To="24" Label="Source1" />
-      <Edge From="24" To="25" Label="Source2" />
-      <Edge From="25" To="26" Label="Source1" />
-      <Edge From="26" To="27" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
