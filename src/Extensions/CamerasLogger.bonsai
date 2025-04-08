@@ -131,6 +131,7 @@
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:GroupByTime">
                       <aeon:ChunkSize>1</aeon:ChunkSize>
+                      <aeon:ClosingDuration>PT30S</aeon:ClosingDuration>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
@@ -400,6 +401,7 @@
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:GroupByTime">
                       <aeon:ChunkSize>1</aeon:ChunkSize>
+                      <aeon:ClosingDuration>PT30S</aeon:ClosingDuration>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
