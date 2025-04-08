@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:p1="clr-namespace:AindBehaviorPirouetteDataSchema.Rig;assembly=Extensions"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:p2="clr-namespace:AindBehaviorPirouetteDataSchema.Session;assembly=Extensions"
                  xmlns:p3="clr-namespace:AindBehaviorPirouetteDataSchema.TaskLogic;assembly=Extensions"
-                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
-                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
-                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:p4="clr-namespace:AllenNeuralDynamics.Core;assembly=AllenNeuralDynamics.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -18,9 +15,9 @@
         <Property Name="SessionPath" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="AllenNeuralDynamics.Core:ReadSchemas.bonsai">
-        <TaskLogicPath />
-        <RigPath />
-        <SessionPath />
+        <TaskLogicPath>..\local\AindBehaviorPirouetteTaskLogic.json</TaskLogicPath>
+        <RigPath>..\local\AindBehaviorPirouetteRig.json</RigPath>
+        <SessionPath>..\local\AindBehaviorSessionModel.json</SessionPath>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>LoadSchemas</Name>
