@@ -33,6 +33,32 @@
         <Selector xsi:nil="true" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
+        <Name>MagnetCommutatorCorrection</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:ObserveOn">
+          <rx:Scheduler>TaskPoolScheduler</rx:Scheduler>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>HarpTimestamp</Name>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Seconds</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:WithLatestFrom" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="harp:CreateTimestamped" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+        <Heartbeats>Heartbeats</Heartbeats>
+        <ClosingDuration>PT2S</ClosingDuration>
+        <LogName>Commutator_MagnetCommutatorCorrection</LogName>
+        <Selector xsi:nil="true" />
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
         <Name>AccumulatedCommutatorTurns</Name>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -56,32 +82,6 @@
         <Heartbeats>Heartbeats</Heartbeats>
         <ClosingDuration>PT2S</ClosingDuration>
         <LogName>Commutator_AccumulatedCommutatorTurns</LogName>
-        <Selector xsi:nil="true" />
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>CommutatorCorrection</Name>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:ObserveOn">
-          <rx:Scheduler>TaskPoolScheduler</rx:Scheduler>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>HarpTimestamp</Name>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Seconds</Selector>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:WithLatestFrom" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="harp:CreateTimestamped" />
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-        <Heartbeats>Heartbeats</Heartbeats>
-        <ClosingDuration>PT2S</ClosingDuration>
-        <LogName>Commutator_CommutatorCorrection</LogName>
         <Selector xsi:nil="true" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
