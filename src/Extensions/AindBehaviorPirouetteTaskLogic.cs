@@ -17,7 +17,7 @@ namespace AindBehaviorPirouetteDataSchema.TaskLogic
     
         private double? _rngSeed;
     
-        private string _aindBehaviorServicesPkgVersion = "0.9.0";
+        private string _aindBehaviorServicesPkgVersion = "0.10.2";
     
         public AindBehaviorPirouetteTaskParameters()
         {

@@ -68,7 +68,7 @@
 #define VMID_SEL            20
 #define CHARGE_CURR         21
 #define nPOW_FAIL           23
-#define CHARGE_CURR_THRESH  0.06 // Super capacitor charge current, in Amps, that must be reached to transistion to normal operation.
+#define CHARGE_CURR_THRESH  0.06 // Super capacitor charge current, in Amps, that must be reached to transition to normal operation.
 #define RPROG               2000.0 // Charge current programming resistor (Ohms)
 #define CODE_TO_AMPS        (3.3 / 1024 * 1000.0 / RPROG)
 
@@ -99,8 +99,8 @@
 
 // Controller state
 struct Context {
-    int led_on = 1; // Using a bool results in extemely bizarre behavior
-    int commutator_en = 1;  // Using a bool results in extemely bizarre behavior
+    int led_on = 1; // Using a bool results in extremely bizarre behavior
+    int commutator_en = 1;  // Using a bool results in extremely bizarre behavior
 };
 
 // Holds the current state
@@ -241,7 +241,7 @@ void turn_commutator(double turns)
 {
     // Invalid request
     if (abs(turns) > MAX_TURNS)
-        return; // Failure, cant turn this far
+        return; // Failure, can't turn this far
 
     // Relative move
     target_turns += turns;
@@ -350,7 +350,7 @@ void setup_io()
 
 inline void motor_driver_en(int enable)
 {
-    digitalWriteFast(MOT_CFG6_EN, enable ? LOW : HIGH); // Inactivate driver (LOW active)
+    digitalWriteFast(MOT_CFG6_EN, enable ? LOW : HIGH); // Disable driver (LOW active)
 }
 
 void setup_motor()

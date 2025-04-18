@@ -50,7 +50,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Delay">
-          <rx:DueTime>PT0.2S</rx:DueTime>
+          <rx:DueTime>PT5S</rx:DueTime>
         </Combinator>
       </Expression>
       <Expression xsi:type="harp:CreateMessage">

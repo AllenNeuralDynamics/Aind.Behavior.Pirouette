@@ -212,9 +212,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     
         private double _magnetometerOverrideSampling = 2D;
     
-        private double _magnetometerTurnDifferenceThreshold = 1D;
-    
-        private double _imuCorrectionSampling = 0.0333D;
+        private double _magnetometerTurnDifferenceThreshold = 1.5D;
     
         private Vector3 _imuRotationAxis;
     
@@ -227,7 +225,6 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             _magnetometerMagnitudeThreshold = other._magnetometerMagnitudeThreshold;
             _magnetometerOverrideSampling = other._magnetometerOverrideSampling;
             _magnetometerTurnDifferenceThreshold = other._magnetometerTurnDifferenceThreshold;
-            _imuCorrectionSampling = other._imuCorrectionSampling;
             _imuRotationAxis = other._imuRotationAxis;
         }
     
@@ -285,24 +282,6 @@ namespace AindBehaviorPirouetteDataSchema.Rig
         }
     
         /// <summary>
-        /// The interval in seconds at which the IMU will be sampled to drive the commutator.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("imu_correction_sampling")]
-        [System.ComponentModel.DescriptionAttribute("The interval in seconds at which the IMU will be sampled to drive the commutator." +
-            "")]
-        public double ImuCorrectionSampling
-        {
-            get
-            {
-                return _imuCorrectionSampling;
-            }
-            set
-            {
-                _imuCorrectionSampling = value;
-            }
-        }
-    
-        /// <summary>
         /// The axis of rotation for the IMU correction.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
@@ -335,7 +314,6 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             stringBuilder.Append("magnetometer_magnitude_threshold = " + _magnetometerMagnitudeThreshold + ", ");
             stringBuilder.Append("magnetometer_override_sampling = " + _magnetometerOverrideSampling + ", ");
             stringBuilder.Append("magnetometer_turn_difference_threshold = " + _magnetometerTurnDifferenceThreshold + ", ");
-            stringBuilder.Append("imu_correction_sampling = " + _imuCorrectionSampling + ", ");
             stringBuilder.Append("imu_rotation_axis = " + _imuRotationAxis);
             return true;
         }
@@ -447,7 +425,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     public partial class HarpOutputExpander
     {
     
-        private string _deviceType = "generic";
+        private string _deviceType = "OutputExpander";
     
         private BaseModel _additionalSettings;
     
@@ -611,7 +589,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     public partial class HarpWhiteRabbit
     {
     
-        private string _deviceType = "whiterabbit";
+        private string _deviceType = "WhiteRabbit";
     
         private BaseModel _additionalSettings;
     
@@ -2267,9 +2245,9 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     public partial class AindBehaviorPirouetteRig
     {
     
-        private string _aindBehaviorServicesPkgVersion = "0.9.0";
+        private string _aindBehaviorServicesPkgVersion = "0.10.2";
     
-        private string _version = "0.1.0";
+        private string _version = "0.2.0";
     
         private string _computerName;
     

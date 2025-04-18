@@ -77,22 +77,15 @@
         "magnetometer_override_sampling": {
           "default": 2,
           "description": "Period of time in seconds that will be used to sample, and override, the commutator via the magnetometer correction.",
-          "exclusiveMinimum": 0.0,
+          "exclusiveMinimum": 0,
           "title": "Magnetometer Override Sampling",
           "type": "number"
         },
         "magnetometer_turn_difference_threshold": {
-          "default": 1,
+          "default": 1.5,
           "description": "The minimum absolute difference necessary to drive a commutator correction via the magnetometer.",
-          "exclusiveMinimum": 0.0,
+          "exclusiveMinimum": 0,
           "title": "Magnetometer Turn Difference Threshold",
-          "type": "number"
-        },
-        "imu_correction_sampling": {
-          "default": 0.0333,
-          "description": "The interval in seconds at which the IMU will be sampled to drive the commutator.",
-          "exclusiveMinimum": 0.0,
-          "title": "Imu Correction Sampling",
           "type": "number"
         },
         "imu_rotation_axis": {
@@ -139,8 +132,8 @@
     "HarpOutputExpander": {
       "properties": {
         "device_type": {
-          "const": "generic",
-          "default": "generic",
+          "const": "OutputExpander",
+          "default": "OutputExpander",
           "title": "Device Type",
           "type": "string"
         },
@@ -202,8 +195,8 @@
     "HarpWhiteRabbit": {
       "properties": {
         "device_type": {
-          "const": "whiterabbit",
-          "default": "whiterabbit",
+          "const": "WhiteRabbit",
+          "default": "WhiteRabbit",
           "title": "Device Type",
           "type": "string"
         },
@@ -284,8 +277,7 @@
           "default": {
             "magnetometer_magnitude_threshold": 50.0,
             "magnetometer_override_sampling": 2.0,
-            "magnetometer_turn_difference_threshold": 1.0,
-            "imu_correction_sampling": 0.0333,
+            "magnetometer_turn_difference_threshold": 1.5,
             "imu_rotation_axis": {
               "x": 0.0,
               "y": 0.0,
@@ -431,7 +423,7 @@
         "gain": {
           "default": 0,
           "description": "Gain",
-          "minimum": 0.0,
+          "minimum": 0,
           "title": "Gain",
           "type": "number"
         },
@@ -440,7 +432,7 @@
           "description": "Gamma. If None, will disable gamma correction.",
           "oneOf": [
             {
-              "minimum": 0.0,
+              "minimum": 0,
               "type": "number"
             },
             {
@@ -924,14 +916,14 @@
   },
   "properties": {
     "aind_behavior_services_pkg_version": {
-      "default": "0.9.0",
+      "default": "0.10.2",
       "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
       "title": "aind_behavior_services package version",
       "type": "string"
     },
     "version": {
-      "const": "0.1.0",
-      "default": "0.1.0",
+      "const": "0.2.0",
+      "default": "0.2.0",
       "title": "Version",
       "type": "string"
     },
