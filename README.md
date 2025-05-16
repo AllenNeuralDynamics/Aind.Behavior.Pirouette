@@ -1,6 +1,6 @@
 # Aind.Behavior.Pirouette
 
-Authors: Bruno Cruz and Brandon Pratt
+Authors: Bruno Cruz, Brandon Pratt, and Carl Schoonover
 
 Last Updated: 05/15/2025
 
@@ -70,4 +70,24 @@ A repository with source code and instructions for long-term, electrophisiology 
 
 ---
 ### 4. Neural activity visualization
-1.Open Git Bash, navigate to the lifealert remote directory, and luanch visual studio.
+Visualiztion of neural activity is done on the surgery computer in Lab 343. The directories of interest are located on the desktop and called "LOAD BONSAI-ONIX STREAM IN SPIKEGLX" and "LOAD BONSAI-ONIX STREAM IN OPENEHPYS". Below are instructions for the recommended way of visualizing data in SpikeGLX, but at the root of both directories is an "instructions.txt" file that can be used for visualizing data collected using Bonsai and Onix. 
+
+1.Copy .bin file that was collected using the Onix system to: \test-day7-Tuesday-May-13-g0\test-day7-Tuesday-May-13_g0_imec0 (Ignore the date, it doesn't matter for visualization).
+
+2.Rename the .bin file to test-day7-Tuesday-May-13-g0_t0.imec0.ap.bin (if there was a previous file with that name, append something relevant to that file, like "_OLD".
+
+3.The fileSizeBytes parameter within the .meta file needs to be updated to the number of bytes the .bin file is, which can be found by looking at the files properties. 
+
+4.Open SpikeGLX, File -->New Acquistion.
+
+5.If slot 40 isn't already available, click Configure Slots and add 40 (i.e. the simulation slot).
+
+6.In the probe table, enable slot 40, Port 1, Dock 1, and disable everything else.
+
+7.Click "Detect" and then "Run".
+
+8.Plot with the following settings: 300-INF filtering, <Tn> enabled, Glb Dmx, and BinMax enabled.
+
+9.The recording neural activity can now be played from beginning to end.
+
+10.OPTIONAL: the file can be also opened in SpikeGLX by File --> Open File Viewer. Select the .bin file, and plot with the following settings: 300-INF filtering, <Tn> enabled, Glb Dmx, and BinMax "Faster".
