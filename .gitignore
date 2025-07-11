@@ -10,6 +10,7 @@ Bonsai.exe.WebView2
 *.dll
 *.exe
 *.exe.settings
+bonsai/Settings/
 *.bonsai.layout
 local
 .venv
