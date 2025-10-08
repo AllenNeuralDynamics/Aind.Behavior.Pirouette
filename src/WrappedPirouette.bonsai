@@ -35,7 +35,7 @@
         <Property Name="RigPath" />
         <Property Name="SessionPath" />
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Pirouette.bonsai">
+      <Expression xsi:type="IncludeWorkflow" Path="Pirouette.bonsai">
         <TaskLogicPath>..\local\AindBehaviorPirouetteTaskLogic.json</TaskLogicPath>
         <RigPath>..\local\AindBehaviorPirouetteRig.json</RigPath>
         <SessionPath>..\local\AindBehaviorSessionModel.json</SessionPath>
