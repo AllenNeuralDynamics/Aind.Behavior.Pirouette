@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.5"
+<WorkflowBuilder Version="2.9.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -35,7 +35,7 @@
         <Property Name="RigPath" />
         <Property Name="SessionPath" />
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Pirouette.bonsai">
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Pirouette.bonsai">
         <TaskLogicPath>..\local\AindBehaviorPirouetteTaskLogic.json</TaskLogicPath>
         <RigPath>..\local\AindBehaviorPirouetteRig.json</RigPath>
         <SessionPath>..\local\AindBehaviorSessionModel.json</SessionPath>
