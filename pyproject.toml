@@ -34,14 +34,6 @@ dev = [
     "ruff",
     "codespell"
 ]
-docs = [
-    'Sphinx',
-    'furo',
-    'sphinx-jinja',
-    'autodoc_pydantic[erdantic]',
-    'myst_parser',
-    'sphinx-jsonschema'
-]
 
 [project.scripts]
 pirouette = "aind_behavior_pirouette.cli:main"
