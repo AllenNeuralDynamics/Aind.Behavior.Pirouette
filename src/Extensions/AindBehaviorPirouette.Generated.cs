@@ -33,8 +33,6 @@ namespace AindBehaviorPirouetteDataSchema
     
         private RobocopyController _robocopyController;
     
-        private ZmqConnection _zmqConnection;
-    
         public AindBehaviorPirouetteRig()
         {
             _aindBehaviorServicesPkgVersion = "0.12.2";
@@ -44,7 +42,6 @@ namespace AindBehaviorPirouetteDataSchema
             _harpOutputExpander = new HarpOutputExpander();
             _onixCommutator = new OnixCommutator();
             _robocopyController = new RobocopyController();
-            _zmqConnection = new ZmqConnection();
         }
     
         protected AindBehaviorPirouetteRig(AindBehaviorPirouetteRig other)
@@ -58,7 +55,6 @@ namespace AindBehaviorPirouetteDataSchema
             _harpOutputExpander = other._harpOutputExpander;
             _onixCommutator = other._onixCommutator;
             _robocopyController = other._robocopyController;
-            _zmqConnection = other._zmqConnection;
         }
     
         [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
@@ -211,24 +207,6 @@ namespace AindBehaviorPirouetteDataSchema
             }
         }
     
-        /// <summary>
-        /// ZMQ socket to connect to LifeAlert monitoring service.
-        /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("zmq_connection", Required=Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DescriptionAttribute("ZMQ socket to connect to LifeAlert monitoring service.")]
-        public ZmqConnection ZmqConnection
-        {
-            get
-            {
-                return _zmqConnection;
-            }
-            set
-            {
-                _zmqConnection = value;
-            }
-        }
-    
         public System.IObservable<AindBehaviorPirouetteRig> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindBehaviorPirouetteRig(this)));
@@ -249,8 +227,7 @@ namespace AindBehaviorPirouetteDataSchema
             stringBuilder.Append("HarpWhiteRabbit = " + _harpWhiteRabbit + ", ");
             stringBuilder.Append("HarpOutputExpander = " + _harpOutputExpander + ", ");
             stringBuilder.Append("OnixCommutator = " + _onixCommutator + ", ");
-            stringBuilder.Append("RobocopyController = " + _robocopyController + ", ");
-            stringBuilder.Append("ZmqConnection = " + _zmqConnection);
+            stringBuilder.Append("RobocopyController = " + _robocopyController);
             return true;
         }
     
@@ -2958,90 +2935,6 @@ namespace AindBehaviorPirouetteDataSchema
 
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    [Bonsai.CombinatorAttribute(MethodName="Generate")]
-    public partial class ZmqConnection
-    {
-    
-        private string _connectionString;
-    
-        private string _topic;
-    
-        public ZmqConnection()
-        {
-            _connectionString = "@tcp://localhost:5556";
-            _topic = "";
-        }
-    
-        protected ZmqConnection(ZmqConnection other)
-        {
-            _connectionString = other._connectionString;
-            _topic = other._topic;
-        }
-    
-        /// <summary>
-        /// The connection string for the ZMQ socket.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("connection_string")]
-        [System.ComponentModel.DescriptionAttribute("The connection string for the ZMQ socket.")]
-        public string ConnectionString
-        {
-            get
-            {
-                return _connectionString;
-            }
-            set
-            {
-                _connectionString = value;
-            }
-        }
-    
-        [Newtonsoft.Json.JsonPropertyAttribute("topic")]
-        public string Topic
-        {
-            get
-            {
-                return _topic;
-            }
-            set
-            {
-                _topic = value;
-            }
-        }
-    
-        public System.IObservable<ZmqConnection> Generate()
-        {
-            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new ZmqConnection(this)));
-        }
-    
-        public System.IObservable<ZmqConnection> Generate<TSource>(System.IObservable<TSource> source)
-        {
-            return System.Reactive.Linq.Observable.Select(source, _ => new ZmqConnection(this));
-        }
-    
-        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
-        {
-            stringBuilder.Append("ConnectionString = " + _connectionString + ", ");
-            stringBuilder.Append("Topic = " + _topic);
-            return true;
-        }
-    
-        public override string ToString()
-        {
-            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
-            stringBuilder.Append(GetType().Name);
-            stringBuilder.Append(" { ");
-            if (PrintMembers(stringBuilder))
-            {
-                stringBuilder.Append(" ");
-            }
-            stringBuilder.Append("}");
-            return stringBuilder.ToString();
-        }
-    }
-
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum SpinnakerCameraColorProcessing
     {
@@ -3329,11 +3222,6 @@ namespace AindBehaviorPirouetteDataSchema
         {
             return Process<VideoWriterOpenCv>(source);
         }
-
-        public System.IObservable<string> Process(System.IObservable<ZmqConnection> source)
-        {
-            return Process<ZmqConnection>(source);
-        }
     }
 
 
@@ -3360,7 +3248,6 @@ namespace AindBehaviorPirouetteDataSchema
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriter>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterOpenCv>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ZmqConnection>))]
     public partial class DeserializeFromJson : Bonsai.Expressions.SingleArgumentExpressionBuilder
     {
     

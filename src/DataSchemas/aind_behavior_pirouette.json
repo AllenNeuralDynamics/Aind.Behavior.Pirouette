@@ -43,10 +43,6 @@
         "robocopy_controller": {
           "$ref": "#/$defs/RobocopyController",
           "description": "Robocopy controller"
-        },
-        "zmq_connection": {
-          "$ref": "#/$defs/ZmqConnection",
-          "description": "ZMQ socket to connect to LifeAlert monitoring service."
         }
       },
       "required": [
@@ -55,8 +51,7 @@
         "harp_white_rabbit",
         "harp_output_expander",
         "onix_commutator",
-        "robocopy_controller",
-        "zmq_connection"
+        "robocopy_controller"
       ],
       "title": "AindBehaviorPirouetteRig",
       "type": "object"
@@ -1155,23 +1150,6 @@
         }
       },
       "title": "VideoWriterOpenCv",
-      "type": "object"
-    },
-    "ZmqConnection": {
-      "properties": {
-        "connection_string": {
-          "default": "@tcp://localhost:5556",
-          "description": "The connection string for the ZMQ socket.",
-          "title": "Connection String",
-          "type": "string"
-        },
-        "topic": {
-          "default": "",
-          "title": "Topic",
-          "type": "string"
-        }
-      },
-      "title": "ZmqConnection",
       "type": "object"
     }
   }
