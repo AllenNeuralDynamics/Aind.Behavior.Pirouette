@@ -1,7 +1,7 @@
 import inspect
 from pathlib import Path
 
-from aind_behavior_services.session import AindBehaviorSessionModel
+from aind_behavior_services import AindBehaviorSessionModel
 from aind_behavior_services.utils import (
     convert_pydantic_to_bonsai,
     pascal_to_snake_case,
@@ -9,16 +9,14 @@ from aind_behavior_services.utils import (
 )
 
 import aind_behavior_pirouette.rig
-import aind_behavior_pirouette.task_logic
 
-SCHEMA_ROOT = Path("./src/DataSchemas/")
-EXTENSIONS_ROOT = Path("./src/Extensions/")
+SCHEMA_ROOT = Path.cwd().parent
+EXTENSIONS_ROOT = Path.cwd().parent.parent.joinpath("Extensions")
 NAMESPACE_PREFIX = "AindBehaviorPirouetteDataSchema"
 
 
 def main():
     models = [
-        aind_behavior_pirouette.task_logic.AindBehaviorPirouetteTaskLogic,
         aind_behavior_pirouette.rig.AindBehaviorPirouetteRig,
         AindBehaviorSessionModel,
     ]
@@ -31,7 +29,14 @@ def main():
 
         print((schema_name, namespace))
         convert_pydantic_to_bonsai(
-            {schema_name: model}, schema_path=SCHEMA_ROOT, output_path=EXTENSIONS_ROOT, namespace=namespace
+            model=model,
+            model_name=schema_name,
+            json_schema_output_dir=SCHEMA_ROOT,
+            cs_output_dir=EXTENSIONS_ROOT,
+            cs_namespace=namespace,
+            json_schema_export_kwargs=dict(
+                remove_root=False
+            ),  # needs to be false otherwise session model json isn't generated correctly
         )
 
 

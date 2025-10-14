@@ -9,9 +9,9 @@ namespace AindBehaviorPirouetteDataSchema.Rig
 {
     #pragma warning disable // Disable all warnings
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class BaseModel
     {
     
@@ -23,12 +23,12 @@ namespace AindBehaviorPirouetteDataSchema.Rig
         {
         }
     
-        public System.IObservable<BaseModel> Process()
+        public System.IObservable<BaseModel> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new BaseModel(this)));
         }
     
-        public System.IObservable<BaseModel> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<BaseModel> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new BaseModel(this));
         }
@@ -53,29 +53,34 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class CameraControllerSpinnakerCamera
     {
     
-        private string _deviceType = "CameraController";
+        private string _deviceType;
+    
+        private string _deviceName;
     
         private BaseModel _additionalSettings;
     
         private BaseModel _calibration;
     
-        private System.Collections.Generic.IDictionary<string, SpinnakerCamera> _cameras = new System.Collections.Generic.Dictionary<string, SpinnakerCamera>();
+        private System.Collections.Generic.Dictionary<string, SpinnakerCamera> _cameras;
     
         private int? _frameRate;
     
         public CameraControllerSpinnakerCamera()
         {
+            _deviceType = "CameraController";
+            _cameras = new System.Collections.Generic.Dictionary<string, SpinnakerCamera>();
         }
     
         protected CameraControllerSpinnakerCamera(CameraControllerSpinnakerCamera other)
         {
             _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
             _additionalSettings = other._additionalSettings;
             _calibration = other._calibration;
             _cameras = other._cameras;
@@ -92,6 +97,23 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             set
             {
                 _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
             }
         }
     
@@ -137,7 +159,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         [Newtonsoft.Json.JsonPropertyAttribute("cameras", Required=Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DescriptionAttribute("Cameras to be instantiated")]
-        public System.Collections.Generic.IDictionary<string, SpinnakerCamera> Cameras
+        public System.Collections.Generic.Dictionary<string, SpinnakerCamera> Cameras
         {
             get
             {
@@ -167,23 +189,24 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<CameraControllerSpinnakerCamera> Process()
+        public System.IObservable<CameraControllerSpinnakerCamera> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new CameraControllerSpinnakerCamera(this)));
         }
     
-        public System.IObservable<CameraControllerSpinnakerCamera> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<CameraControllerSpinnakerCamera> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new CameraControllerSpinnakerCamera(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("device_type = " + _deviceType + ", ");
-            stringBuilder.Append("additional_settings = " + _additionalSettings + ", ");
-            stringBuilder.Append("calibration = " + _calibration + ", ");
-            stringBuilder.Append("cameras = " + _cameras + ", ");
-            stringBuilder.Append("frame_rate = " + _frameRate);
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("Cameras = " + _cameras + ", ");
+            stringBuilder.Append("FrameRate = " + _frameRate);
             return true;
         }
     
@@ -202,22 +225,26 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class CommutatorSettings
     {
     
-        private double _magnetometerMagnitudeThreshold = 50D;
+        private double _magnetometerMagnitudeThreshold;
     
-        private double _magnetometerOverrideSampling = 2D;
+        private double _magnetometerOverrideSampling;
     
-        private double _magnetometerTurnDifferenceThreshold = 1.5D;
+        private double _magnetometerTurnDifferenceThreshold;
     
         private Vector3 _imuRotationAxis;
     
         public CommutatorSettings()
         {
+            _magnetometerMagnitudeThreshold = 50D;
+            _magnetometerOverrideSampling = 2D;
+            _magnetometerTurnDifferenceThreshold = 1.5D;
+            _imuRotationAxis = new Vector3();
         }
     
         protected CommutatorSettings(CommutatorSettings other)
@@ -299,22 +326,22 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<CommutatorSettings> Process()
+        public System.IObservable<CommutatorSettings> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new CommutatorSettings(this)));
         }
     
-        public System.IObservable<CommutatorSettings> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<CommutatorSettings> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new CommutatorSettings(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("magnetometer_magnitude_threshold = " + _magnetometerMagnitudeThreshold + ", ");
-            stringBuilder.Append("magnetometer_override_sampling = " + _magnetometerOverrideSampling + ", ");
-            stringBuilder.Append("magnetometer_turn_difference_threshold = " + _magnetometerTurnDifferenceThreshold + ", ");
-            stringBuilder.Append("imu_rotation_axis = " + _imuRotationAxis);
+            stringBuilder.Append("MagnetometerMagnitudeThreshold = " + _magnetometerMagnitudeThreshold + ", ");
+            stringBuilder.Append("MagnetometerOverrideSampling = " + _magnetometerOverrideSampling + ", ");
+            stringBuilder.Append("MagnetometerTurnDifferenceThreshold = " + _magnetometerTurnDifferenceThreshold + ", ");
+            stringBuilder.Append("ImuRotationAxis = " + _imuRotationAxis);
             return true;
         }
     
@@ -333,9 +360,9 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class ConnectedClockOutput
     {
     
@@ -387,20 +414,20 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<ConnectedClockOutput> Process()
+        public System.IObservable<ConnectedClockOutput> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new ConnectedClockOutput(this)));
         }
     
-        public System.IObservable<ConnectedClockOutput> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<ConnectedClockOutput> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new ConnectedClockOutput(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("target_device = " + _targetDevice + ", ");
-            stringBuilder.Append("output_channel = " + _outputChannel);
+            stringBuilder.Append("TargetDevice = " + _targetDevice + ", ");
+            stringBuilder.Append("OutputChannel = " + _outputChannel);
             return true;
         }
     
@@ -419,19 +446,21 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class HarpOutputExpander
     {
     
-        private string _deviceType = "OutputExpander";
+        private string _deviceType;
+    
+        private string _deviceName;
     
         private BaseModel _additionalSettings;
     
         private BaseModel _calibration;
     
-        private int _whoAmI = 1108;
+        private int _whoAmI;
     
         private string _serialNumber;
     
@@ -439,11 +468,14 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     
         public HarpOutputExpander()
         {
+            _deviceType = "OutputExpander";
+            _whoAmI = 1108;
         }
     
         protected HarpOutputExpander(HarpOutputExpander other)
         {
             _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
             _additionalSettings = other._additionalSettings;
             _calibration = other._calibration;
             _whoAmI = other._whoAmI;
@@ -461,6 +493,23 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             set
             {
                 _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
             }
         }
     
@@ -547,24 +596,25 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<HarpOutputExpander> Process()
+        public System.IObservable<HarpOutputExpander> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HarpOutputExpander(this)));
         }
     
-        public System.IObservable<HarpOutputExpander> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<HarpOutputExpander> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new HarpOutputExpander(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("device_type = " + _deviceType + ", ");
-            stringBuilder.Append("additional_settings = " + _additionalSettings + ", ");
-            stringBuilder.Append("calibration = " + _calibration + ", ");
-            stringBuilder.Append("who_am_i = " + _whoAmI + ", ");
-            stringBuilder.Append("serial_number = " + _serialNumber + ", ");
-            stringBuilder.Append("port_name = " + _portName);
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("WhoAmI = " + _whoAmI + ", ");
+            stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
+            stringBuilder.Append("PortName = " + _portName);
             return true;
         }
     
@@ -583,33 +633,39 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class HarpWhiteRabbit
     {
     
-        private string _deviceType = "WhiteRabbit";
+        private string _deviceType;
+    
+        private string _deviceName;
     
         private BaseModel _additionalSettings;
     
         private BaseModel _calibration;
     
-        private int _whoAmI = 1404;
+        private int _whoAmI;
     
         private string _serialNumber;
     
         private string _portName;
     
-        private System.Collections.Generic.List<ConnectedClockOutput> _connectedClockOutputs = new System.Collections.Generic.List<ConnectedClockOutput>();
+        private System.Collections.Generic.List<ConnectedClockOutput> _connectedClockOutputs;
     
         public HarpWhiteRabbit()
         {
+            _deviceType = "WhiteRabbit";
+            _whoAmI = 1404;
+            _connectedClockOutputs = new System.Collections.Generic.List<ConnectedClockOutput>();
         }
     
         protected HarpWhiteRabbit(HarpWhiteRabbit other)
         {
             _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
             _additionalSettings = other._additionalSettings;
             _calibration = other._calibration;
             _whoAmI = other._whoAmI;
@@ -628,6 +684,23 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             set
             {
                 _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
             }
         }
     
@@ -732,25 +805,26 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<HarpWhiteRabbit> Process()
+        public System.IObservable<HarpWhiteRabbit> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new HarpWhiteRabbit(this)));
         }
     
-        public System.IObservable<HarpWhiteRabbit> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<HarpWhiteRabbit> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new HarpWhiteRabbit(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("device_type = " + _deviceType + ", ");
-            stringBuilder.Append("additional_settings = " + _additionalSettings + ", ");
-            stringBuilder.Append("calibration = " + _calibration + ", ");
-            stringBuilder.Append("who_am_i = " + _whoAmI + ", ");
-            stringBuilder.Append("serial_number = " + _serialNumber + ", ");
-            stringBuilder.Append("port_name = " + _portName + ", ");
-            stringBuilder.Append("connected_clock_outputs = " + _connectedClockOutputs);
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("WhoAmI = " + _whoAmI + ", ");
+            stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
+            stringBuilder.Append("PortName = " + _portName + ", ");
+            stringBuilder.Append("ConnectedClockOutputs = " + _connectedClockOutputs);
             return true;
         }
     
@@ -769,13 +843,15 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class OnixCommutator
     {
     
-        private string _deviceType = "OnixCommutator";
+        private string _deviceType;
+    
+        private string _deviceName;
     
         private CommutatorSettings _additionalSettings;
     
@@ -785,11 +861,14 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     
         public OnixCommutator()
         {
+            _deviceType = "OnixCommutator";
+            _additionalSettings = new CommutatorSettings();
         }
     
         protected OnixCommutator(OnixCommutator other)
         {
             _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
             _additionalSettings = other._additionalSettings;
             _calibration = other._calibration;
             _portName = other._portName;
@@ -805,6 +884,23 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             set
             {
                 _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
             }
         }
     
@@ -861,22 +957,23 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<OnixCommutator> Process()
+        public System.IObservable<OnixCommutator> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new OnixCommutator(this)));
         }
     
-        public System.IObservable<OnixCommutator> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<OnixCommutator> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new OnixCommutator(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("device_type = " + _deviceType + ", ");
-            stringBuilder.Append("additional_settings = " + _additionalSettings + ", ");
-            stringBuilder.Append("calibration = " + _calibration + ", ");
-            stringBuilder.Append("port_name = " + _portName);
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("PortName = " + _portName);
             return true;
         }
     
@@ -895,22 +992,26 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class Rect
     {
     
-        private int _x = 0;
+        private int _x;
     
-        private int _y = 0;
+        private int _y;
     
-        private int _width = 0;
+        private int _width;
     
-        private int _height = 0;
+        private int _height;
     
         public Rect()
         {
+            _x = 0;
+            _y = 0;
+            _width = 0;
+            _height = 0;
         }
     
         protected Rect(Rect other)
@@ -989,22 +1090,22 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<Rect> Process()
+        public System.IObservable<Rect> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Rect(this)));
         }
     
-        public System.IObservable<Rect> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<Rect> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new Rect(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("x = " + _x + ", ");
-            stringBuilder.Append("y = " + _y + ", ");
-            stringBuilder.Append("width = " + _width + ", ");
-            stringBuilder.Append("height = " + _height);
+            stringBuilder.Append("X = " + _x + ", ");
+            stringBuilder.Append("Y = " + _y + ", ");
+            stringBuilder.Append("Width = " + _width + ", ");
+            stringBuilder.Append("Height = " + _height);
             return true;
         }
     
@@ -1023,9 +1124,9 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class RobocopyController
     {
     
@@ -1057,19 +1158,19 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<RobocopyController> Process()
+        public System.IObservable<RobocopyController> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new RobocopyController(this)));
         }
     
-        public System.IObservable<RobocopyController> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<RobocopyController> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new RobocopyController(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("remote_path = " + _remotePath);
+            stringBuilder.Append("RemotePath = " + _remotePath);
             return true;
         }
     
@@ -1088,13 +1189,15 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class SpinnakerCamera
     {
     
-        private string _deviceType = "SpinnakerCamera";
+        private string _deviceType;
+    
+        private string _deviceName;
     
         private BaseModel _additionalSettings;
     
@@ -1102,19 +1205,19 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     
         private string _serialNumber;
     
-        private int _binning = 1;
+        private int _binning;
     
-        private SpinnakerCameraColorProcessing _colorProcessing = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraColorProcessing.Default;
+        private SpinnakerCameraColorProcessing _colorProcessing;
     
-        private int _exposure = 1000;
+        private int _exposure;
     
-        private double _gain = 0D;
+        private double _gain;
     
         private double? _gamma;
     
-        private SpinnakerCameraAdcBitDepth? _adcBitDepth = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
+        private SpinnakerCameraAdcBitDepth? _adcBitDepth;
     
-        private SpinnakerCameraPixelFormat? _pixelFormat = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraPixelFormat.Mono8;
+        private SpinnakerCameraPixelFormat? _pixelFormat;
     
         private Rect _regionOfInterest;
     
@@ -1122,11 +1225,20 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     
         public SpinnakerCamera()
         {
+            _deviceType = "SpinnakerCamera";
+            _binning = 1;
+            _colorProcessing = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraColorProcessing.Default;
+            _exposure = 1000;
+            _gain = 0D;
+            _adcBitDepth = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraAdcBitDepth.Adc8bit;
+            _pixelFormat = AindBehaviorPirouetteDataSchema.Rig.SpinnakerCameraPixelFormat.Mono8;
+            _regionOfInterest = new Rect();
         }
     
         protected SpinnakerCamera(SpinnakerCamera other)
         {
             _deviceType = other._deviceType;
+            _deviceName = other._deviceName;
             _additionalSettings = other._additionalSettings;
             _calibration = other._calibration;
             _serialNumber = other._serialNumber;
@@ -1155,6 +1267,23 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             set
             {
                 _deviceType = value;
+            }
+        }
+    
+        /// <summary>
+        /// Device name
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("device_name")]
+        [System.ComponentModel.DescriptionAttribute("Device name")]
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+            set
+            {
+                _deviceName = value;
             }
         }
     
@@ -1370,31 +1499,32 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<SpinnakerCamera> Process()
+        public System.IObservable<SpinnakerCamera> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new SpinnakerCamera(this)));
         }
     
-        public System.IObservable<SpinnakerCamera> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<SpinnakerCamera> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new SpinnakerCamera(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("device_type = " + _deviceType + ", ");
-            stringBuilder.Append("additional_settings = " + _additionalSettings + ", ");
-            stringBuilder.Append("calibration = " + _calibration + ", ");
-            stringBuilder.Append("serial_number = " + _serialNumber + ", ");
-            stringBuilder.Append("binning = " + _binning + ", ");
-            stringBuilder.Append("color_processing = " + _colorProcessing + ", ");
-            stringBuilder.Append("exposure = " + _exposure + ", ");
-            stringBuilder.Append("gain = " + _gain + ", ");
-            stringBuilder.Append("gamma = " + _gamma + ", ");
-            stringBuilder.Append("adc_bit_depth = " + _adcBitDepth + ", ");
-            stringBuilder.Append("pixel_format = " + _pixelFormat + ", ");
-            stringBuilder.Append("region_of_interest = " + _regionOfInterest + ", ");
-            stringBuilder.Append("video_writer = " + _videoWriter);
+            stringBuilder.Append("DeviceType = " + _deviceType + ", ");
+            stringBuilder.Append("DeviceName = " + _deviceName + ", ");
+            stringBuilder.Append("AdditionalSettings = " + _additionalSettings + ", ");
+            stringBuilder.Append("Calibration = " + _calibration + ", ");
+            stringBuilder.Append("SerialNumber = " + _serialNumber + ", ");
+            stringBuilder.Append("Binning = " + _binning + ", ");
+            stringBuilder.Append("ColorProcessing = " + _colorProcessing + ", ");
+            stringBuilder.Append("Exposure = " + _exposure + ", ");
+            stringBuilder.Append("Gain = " + _gain + ", ");
+            stringBuilder.Append("Gamma = " + _gamma + ", ");
+            stringBuilder.Append("AdcBitDepth = " + _adcBitDepth + ", ");
+            stringBuilder.Append("PixelFormat = " + _pixelFormat + ", ");
+            stringBuilder.Append("RegionOfInterest = " + _regionOfInterest + ", ");
+            stringBuilder.Append("VideoWriter = " + _videoWriter);
             return true;
         }
     
@@ -1413,7 +1543,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     public enum SpinnakerCameraAdcBitDepth
     {
     
@@ -1428,7 +1558,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     public enum SpinnakerCameraPixelFormat
     {
     
@@ -1866,20 +1996,23 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class Vector3
     {
     
-        private double _x = 0D;
+        private double _x;
     
-        private double _y = 0D;
+        private double _y;
     
-        private double _z = 0D;
+        private double _z;
     
         public Vector3()
         {
+            _x = 0D;
+            _y = 0D;
+            _z = 0D;
         }
     
         protected Vector3(Vector3 other)
@@ -1940,21 +2073,21 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<Vector3> Process()
+        public System.IObservable<Vector3> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Vector3(this)));
         }
     
-        public System.IObservable<Vector3> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<Vector3> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new Vector3(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("x = " + _x + ", ");
-            stringBuilder.Append("y = " + _y + ", ");
-            stringBuilder.Append("z = " + _z);
+            stringBuilder.Append("X = " + _x + ", ");
+            stringBuilder.Append("Y = " + _y + ", ");
+            stringBuilder.Append("Z = " + _z);
             return true;
         }
     
@@ -1973,12 +2106,12 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(JsonInheritanceConverter), "video_writer_type")]
     [JsonInheritanceAttribute("FFMPEG", typeof(VideoWriterFfmpeg))]
     [JsonInheritanceAttribute("OPENCV", typeof(VideoWriterOpenCv))]
-    [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriter
     {
     
@@ -1990,12 +2123,12 @@ namespace AindBehaviorPirouetteDataSchema.Rig
         {
         }
     
-        public System.IObservable<VideoWriter> Process()
+        public System.IObservable<VideoWriter> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new VideoWriter(this)));
         }
     
-        public System.IObservable<VideoWriter> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<VideoWriter> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new VideoWriter(this));
         }
@@ -2020,22 +2153,26 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriterFfmpeg : VideoWriter
     {
     
-        private int _frameRate = 30;
+        private int _frameRate;
     
-        private string _containerExtension = "mp4";
+        private string _containerExtension;
     
-        private string _outputArguments = "-vf \"scale=out_color_matrix=bt709:out_range=full,format=bgr24,scale=out_range=full\" -c:v h264_nvenc -pix_fmt yuv420p -color_range full -colorspace bt709 -color_trc linear -tune hq -preset p4 -rc vbr -cq 12 -b:v 0M -metadata author=\"Allen Institute for Neural Dynamics\" -maxrate 700M -bufsize 350M";
+        private string _outputArguments;
     
-        private string _inputArguments = "-colorspace bt709 -color_primaries bt709 -color_range full -color_trc linear";
+        private string _inputArguments;
     
         public VideoWriterFfmpeg()
         {
+            _frameRate = 30;
+            _containerExtension = "mp4";
+            _outputArguments = "-vf \"scale=out_color_matrix=bt709:out_range=full,format=bgr24,scale=out_range=full\" -c:v h264_nvenc -pix_fmt yuv420p -color_range full -colorspace bt709 -color_trc linear -tune hq -preset p4 -rc vbr -cq 12 -b:v 0M -metadata author=\"Allen Institute for Neural Dynamics\" -maxrate 700M -bufsize 350M";
+            _inputArguments = "-colorspace bt709 -color_primaries bt709 -color_range full -color_trc linear";
         }
     
         protected VideoWriterFfmpeg(VideoWriterFfmpeg other) : 
@@ -2115,12 +2252,12 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<VideoWriterFfmpeg> Process()
+        public System.IObservable<VideoWriterFfmpeg> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new VideoWriterFfmpeg(this)));
         }
     
-        public System.IObservable<VideoWriterFfmpeg> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<VideoWriterFfmpeg> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new VideoWriterFfmpeg(this));
         }
@@ -2131,29 +2268,32 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             {
                 stringBuilder.Append(", ");
             }
-            stringBuilder.Append("frame_rate = " + _frameRate + ", ");
-            stringBuilder.Append("container_extension = " + _containerExtension + ", ");
-            stringBuilder.Append("output_arguments = " + _outputArguments + ", ");
-            stringBuilder.Append("input_arguments = " + _inputArguments);
+            stringBuilder.Append("FrameRate = " + _frameRate + ", ");
+            stringBuilder.Append("ContainerExtension = " + _containerExtension + ", ");
+            stringBuilder.Append("OutputArguments = " + _outputArguments + ", ");
+            stringBuilder.Append("InputArguments = " + _inputArguments);
             return true;
         }
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VideoWriterOpenCv : VideoWriter
     {
     
-        private int _frameRate = 30;
+        private int _frameRate;
     
-        private string _containerExtension = "avi";
+        private string _containerExtension;
     
-        private string _fourCc = "FMP4";
+        private string _fourCc;
     
         public VideoWriterOpenCv()
         {
+            _frameRate = 30;
+            _containerExtension = "avi";
+            _fourCc = "FMP4";
         }
     
         protected VideoWriterOpenCv(VideoWriterOpenCv other) : 
@@ -2215,12 +2355,12 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<VideoWriterOpenCv> Process()
+        public System.IObservable<VideoWriterOpenCv> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new VideoWriterOpenCv(this)));
         }
     
-        public System.IObservable<VideoWriterOpenCv> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<VideoWriterOpenCv> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new VideoWriterOpenCv(this));
         }
@@ -2231,40 +2371,134 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             {
                 stringBuilder.Append(", ");
             }
-            stringBuilder.Append("frame_rate = " + _frameRate + ", ");
-            stringBuilder.Append("container_extension = " + _containerExtension + ", ");
-            stringBuilder.Append("four_cc = " + _fourCc);
+            stringBuilder.Append("FrameRate = " + _frameRate + ", ");
+            stringBuilder.Append("ContainerExtension = " + _containerExtension + ", ");
+            stringBuilder.Append("FourCc = " + _fourCc);
             return true;
         }
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class ZmqConnection
+    {
+    
+        private string _connectionString;
+    
+        private string _topic;
+    
+        public ZmqConnection()
+        {
+            _connectionString = "@tcp://localhost:5556";
+            _topic = "";
+        }
+    
+        protected ZmqConnection(ZmqConnection other)
+        {
+            _connectionString = other._connectionString;
+            _topic = other._topic;
+        }
+    
+        /// <summary>
+        /// The connection string for the ZMQ socket.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("connection_string")]
+        [System.ComponentModel.DescriptionAttribute("The connection string for the ZMQ socket.")]
+        public string ConnectionString
+        {
+            get
+            {
+                return _connectionString;
+            }
+            set
+            {
+                _connectionString = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("topic")]
+        public string Topic
+        {
+            get
+            {
+                return _topic;
+            }
+            set
+            {
+                _topic = value;
+            }
+        }
+    
+        public System.IObservable<ZmqConnection> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new ZmqConnection(this)));
+        }
+    
+        public System.IObservable<ZmqConnection> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new ZmqConnection(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("ConnectionString = " + _connectionString + ", ");
+            stringBuilder.Append("Topic = " + _topic);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class AindBehaviorPirouetteRig
     {
     
-        private string _aindBehaviorServicesPkgVersion = "0.10.2";
+        private string _aindBehaviorServicesPkgVersion;
     
-        private string _version = "0.2.0";
+        private string _version;
     
         private string _computerName;
     
         private string _rigName;
     
-        private CameraControllerSpinnakerCamera _cameraController = new CameraControllerSpinnakerCamera();
+        private CameraControllerSpinnakerCamera _cameraController;
     
-        private HarpWhiteRabbit _harpWhiteRabbit = new HarpWhiteRabbit();
+        private HarpWhiteRabbit _harpWhiteRabbit;
     
-        private HarpOutputExpander _harpOutputExpander = new HarpOutputExpander();
+        private HarpOutputExpander _harpOutputExpander;
     
-        private OnixCommutator _onixCommutator = new OnixCommutator();
+        private OnixCommutator _onixCommutator;
     
-        private RobocopyController _robocopyController = new RobocopyController();
+        private RobocopyController _robocopyController;
+    
+        private ZmqConnection _zmqConnection;
     
         public AindBehaviorPirouetteRig()
         {
+            _aindBehaviorServicesPkgVersion = "0.12.2";
+            _version = "0.2.0";
+            _cameraController = new CameraControllerSpinnakerCamera();
+            _harpWhiteRabbit = new HarpWhiteRabbit();
+            _harpOutputExpander = new HarpOutputExpander();
+            _onixCommutator = new OnixCommutator();
+            _robocopyController = new RobocopyController();
+            _zmqConnection = new ZmqConnection();
         }
     
         protected AindBehaviorPirouetteRig(AindBehaviorPirouetteRig other)
@@ -2278,6 +2512,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             _harpOutputExpander = other._harpOutputExpander;
             _onixCommutator = other._onixCommutator;
             _robocopyController = other._robocopyController;
+            _zmqConnection = other._zmqConnection;
         }
     
         [Newtonsoft.Json.JsonPropertyAttribute("aind_behavior_services_pkg_version")]
@@ -2430,27 +2665,46 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             }
         }
     
-        public System.IObservable<AindBehaviorPirouetteRig> Process()
+        /// <summary>
+        /// ZMQ socket to connect to LifeAlert monitoring service.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("zmq_connection", Required=Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DescriptionAttribute("ZMQ socket to connect to LifeAlert monitoring service.")]
+        public ZmqConnection ZmqConnection
+        {
+            get
+            {
+                return _zmqConnection;
+            }
+            set
+            {
+                _zmqConnection = value;
+            }
+        }
+    
+        public System.IObservable<AindBehaviorPirouetteRig> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindBehaviorPirouetteRig(this)));
         }
     
-        public System.IObservable<AindBehaviorPirouetteRig> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<AindBehaviorPirouetteRig> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new AindBehaviorPirouetteRig(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("aind_behavior_services_pkg_version = " + _aindBehaviorServicesPkgVersion + ", ");
-            stringBuilder.Append("version = " + _version + ", ");
-            stringBuilder.Append("computer_name = " + _computerName + ", ");
-            stringBuilder.Append("rig_name = " + _rigName + ", ");
-            stringBuilder.Append("camera_controller = " + _cameraController + ", ");
-            stringBuilder.Append("harp_white_rabbit = " + _harpWhiteRabbit + ", ");
-            stringBuilder.Append("harp_output_expander = " + _harpOutputExpander + ", ");
-            stringBuilder.Append("onix_commutator = " + _onixCommutator + ", ");
-            stringBuilder.Append("robocopy_controller = " + _robocopyController);
+            stringBuilder.Append("AindBehaviorServicesPkgVersion = " + _aindBehaviorServicesPkgVersion + ", ");
+            stringBuilder.Append("Version = " + _version + ", ");
+            stringBuilder.Append("ComputerName = " + _computerName + ", ");
+            stringBuilder.Append("RigName = " + _rigName + ", ");
+            stringBuilder.Append("CameraController = " + _cameraController + ", ");
+            stringBuilder.Append("HarpWhiteRabbit = " + _harpWhiteRabbit + ", ");
+            stringBuilder.Append("HarpOutputExpander = " + _harpOutputExpander + ", ");
+            stringBuilder.Append("OnixCommutator = " + _onixCommutator + ", ");
+            stringBuilder.Append("RobocopyController = " + _robocopyController + ", ");
+            stringBuilder.Append("ZmqConnection = " + _zmqConnection);
             return true;
         }
     
@@ -2469,7 +2723,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum SpinnakerCameraColorProcessing
     {
@@ -2619,7 +2873,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Combinator)]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
@@ -2663,16 +2917,19 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     /// <summary>
     /// Serializes a sequence of data model objects into JSON strings.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Serializes a sequence of data model objects into JSON strings.")]
-    [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
+    [Bonsai.CombinatorAttribute()]
     public partial class SerializeToJson
     {
     
+        public Newtonsoft.Json.Formatting Formatting { get; set; }
+
         private System.IObservable<string> Process<T>(System.IObservable<T> source)
         {
-            return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value));
+            var formatting = Formatting;
+            return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value, formatting));
         }
 
         public System.IObservable<string> Process(System.IObservable<BaseModel> source)
@@ -2745,6 +3002,11 @@ namespace AindBehaviorPirouetteDataSchema.Rig
             return Process<VideoWriterOpenCv>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<ZmqConnection> source)
+        {
+            return Process<ZmqConnection>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<AindBehaviorPirouetteRig> source)
         {
             return Process<AindBehaviorPirouetteRig>(source);
@@ -2755,7 +3017,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     /// <summary>
     /// Deserializes a sequence of JSON strings into data model objects.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
@@ -2773,6 +3035,7 @@ namespace AindBehaviorPirouetteDataSchema.Rig
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriter>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterFfmpeg>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VideoWriterOpenCv>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ZmqConnection>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<AindBehaviorPirouetteRig>))]
     public partial class DeserializeFromJson : Bonsai.Expressions.SingleArgumentExpressionBuilder
     {

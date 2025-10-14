@@ -18,8 +18,9 @@ class CommutatorSettings(BaseModel):
         default=1.5,
         description="The minimum absolute difference necessary to drive a commutator correction via the magnetometer.",
     )
-    imu_rotation_axis: rig.Vector3 = Field(
-        default=rig.Vector3(x=0, y=0, z=1), description="The axis of rotation for the IMU correction."
+    imu_rotation_axis: rig.visual_stimulation.Vector3 = Field(
+        default=rig.visual_stimulation.Vector3(x=0, y=0, z=1),
+        description="The axis of rotation for the IMU correction.",
     )
 
 
@@ -37,10 +38,13 @@ class RobocopyController(BaseModel):
 
 class AindBehaviorPirouetteRig(rig.AindBehaviorRigModel):
     version: Literal[__version__] = __version__
-    camera_controller: rig.CameraController[rig.SpinnakerCamera] = Field(
+    camera_controller: rig.cameras.CameraController[rig.cameras.SpinnakerCamera] = Field(
         ..., description="Required camera controller to triggered cameras."
     )
-    harp_white_rabbit: rig.HarpWhiteRabbit = Field(..., description="Harp white rabbit")
-    harp_output_expander: rig.HarpOutputExpander = Field(..., description="Harp output expander")
+    harp_white_rabbit: rig.harp.HarpWhiteRabbit = Field(..., description="Harp white rabbit")
+    harp_output_expander: rig.harp.HarpOutputExpander = Field(..., description="Harp output expander")
     onix_commutator: OnixCommutator = Field(..., description="Onix commutator")
     robocopy_controller: RobocopyController = Field(..., description="Robocopy controller")
+    zmq_connection: rig.network.ZmqConnection = Field(
+        ..., description="ZMQ socket to connect to LifeAlert monitoring service."
+    )

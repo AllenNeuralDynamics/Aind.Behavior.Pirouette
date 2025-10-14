@@ -9,19 +9,19 @@ namespace AindBehaviorPirouetteDataSchema.Session
 {
     #pragma warning disable // Disable all warnings
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
-    [Bonsai.CombinatorAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class AindBehaviorSessionModel
     {
     
-        private string _aindBehaviorServicesPkgVersion = "0.10.2";
+        private string _aindBehaviorServicesPkgVersion;
     
-        private string _version = "0.3.1";
+        private string _version;
     
         private string _experiment;
     
-        private System.Collections.Generic.List<string> _experimenter = new System.Collections.Generic.List<string>();
+        private System.Collections.Generic.List<string> _experimenter;
     
         private System.DateTimeOffset _date;
     
@@ -37,12 +37,18 @@ namespace AindBehaviorPirouetteDataSchema.Session
     
         private string _commitHash;
     
-        private bool _allowDirtyRepo = false;
+        private bool _allowDirtyRepo;
     
-        private bool _skipHardwareValidation = false;
+        private bool _skipHardwareValidation;
     
         public AindBehaviorSessionModel()
         {
+            _aindBehaviorServicesPkgVersion = "0.12.2";
+            _version = "0.12.2";
+            _experimenter = new System.Collections.Generic.List<string>();
+            _experimentVersion = "";
+            _allowDirtyRepo = false;
+            _skipHardwareValidation = false;
         }
     
         protected AindBehaviorSessionModel(AindBehaviorSessionModel other)
@@ -91,7 +97,7 @@ namespace AindBehaviorPirouetteDataSchema.Session
         /// <summary>
         /// Name of the experiment
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("experiment", Required=Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonPropertyAttribute("experiment")]
         [System.ComponentModel.DescriptionAttribute("Name of the experiment")]
         public string Experiment
         {
@@ -159,10 +165,11 @@ namespace AindBehaviorPirouetteDataSchema.Session
         }
     
         /// <summary>
-        /// Name of the session. This will be used to create a folder in the root path.
+        /// Name of the session. This will be used to create a folder in the root path. If not provided, it will be generated using subject and date.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("session_name")]
-        [System.ComponentModel.DescriptionAttribute("Name of the session. This will be used to create a folder in the root path.")]
+        [System.ComponentModel.DescriptionAttribute("Name of the session. This will be used to create a folder in the root path. If no" +
+            "t provided, it will be generated using subject and date.")]
         public string SessionName
         {
             get
@@ -195,7 +202,7 @@ namespace AindBehaviorPirouetteDataSchema.Session
         /// <summary>
         /// Version of the experiment
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("experiment_version", Required=Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonPropertyAttribute("experiment_version")]
         [System.ComponentModel.DescriptionAttribute("Version of the experiment")]
         public string ExperimentVersion
         {
@@ -277,31 +284,31 @@ namespace AindBehaviorPirouetteDataSchema.Session
             }
         }
     
-        public System.IObservable<AindBehaviorSessionModel> Process()
+        public System.IObservable<AindBehaviorSessionModel> Generate()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new AindBehaviorSessionModel(this)));
         }
     
-        public System.IObservable<AindBehaviorSessionModel> Process<TSource>(System.IObservable<TSource> source)
+        public System.IObservable<AindBehaviorSessionModel> Generate<TSource>(System.IObservable<TSource> source)
         {
             return System.Reactive.Linq.Observable.Select(source, _ => new AindBehaviorSessionModel(this));
         }
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            stringBuilder.Append("aind_behavior_services_pkg_version = " + _aindBehaviorServicesPkgVersion + ", ");
-            stringBuilder.Append("version = " + _version + ", ");
-            stringBuilder.Append("experiment = " + _experiment + ", ");
-            stringBuilder.Append("experimenter = " + _experimenter + ", ");
-            stringBuilder.Append("date = " + _date + ", ");
-            stringBuilder.Append("root_path = " + _rootPath + ", ");
-            stringBuilder.Append("session_name = " + _sessionName + ", ");
-            stringBuilder.Append("subject = " + _subject + ", ");
-            stringBuilder.Append("experiment_version = " + _experimentVersion + ", ");
-            stringBuilder.Append("notes = " + _notes + ", ");
-            stringBuilder.Append("commit_hash = " + _commitHash + ", ");
-            stringBuilder.Append("allow_dirty_repo = " + _allowDirtyRepo + ", ");
-            stringBuilder.Append("skip_hardware_validation = " + _skipHardwareValidation);
+            stringBuilder.Append("AindBehaviorServicesPkgVersion = " + _aindBehaviorServicesPkgVersion + ", ");
+            stringBuilder.Append("Version = " + _version + ", ");
+            stringBuilder.Append("Experiment = " + _experiment + ", ");
+            stringBuilder.Append("Experimenter = " + _experimenter + ", ");
+            stringBuilder.Append("Date = " + _date + ", ");
+            stringBuilder.Append("RootPath = " + _rootPath + ", ");
+            stringBuilder.Append("SessionName = " + _sessionName + ", ");
+            stringBuilder.Append("Subject = " + _subject + ", ");
+            stringBuilder.Append("ExperimentVersion = " + _experimentVersion + ", ");
+            stringBuilder.Append("Notes = " + _notes + ", ");
+            stringBuilder.Append("CommitHash = " + _commitHash + ", ");
+            stringBuilder.Append("AllowDirtyRepo = " + _allowDirtyRepo + ", ");
+            stringBuilder.Append("SkipHardwareValidation = " + _skipHardwareValidation);
             return true;
         }
     
@@ -323,16 +330,19 @@ namespace AindBehaviorPirouetteDataSchema.Session
     /// <summary>
     /// Serializes a sequence of data model objects into JSON strings.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Serializes a sequence of data model objects into JSON strings.")]
-    [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
+    [Bonsai.CombinatorAttribute()]
     public partial class SerializeToJson
     {
     
+        public Newtonsoft.Json.Formatting Formatting { get; set; }
+
         private System.IObservable<string> Process<T>(System.IObservable<T> source)
         {
-            return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value));
+            var formatting = Formatting;
+            return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value, formatting));
         }
 
         public System.IObservable<string> Process(System.IObservable<AindBehaviorSessionModel> source)
@@ -345,7 +355,7 @@ namespace AindBehaviorPirouetteDataSchema.Session
     /// <summary>
     /// Deserializes a sequence of JSON strings into data model objects.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.4.0.0 (Newtonsoft.Json v13.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.6.1.0 (Newtonsoft.Json v13.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
