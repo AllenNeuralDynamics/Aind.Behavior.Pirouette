@@ -45,6 +45,3 @@ class AindBehaviorPirouetteRig(rig.AindBehaviorRigModel):
     harp_output_expander: rig.harp.HarpOutputExpander = Field(..., description="Harp output expander")
     onix_commutator: OnixCommutator = Field(..., description="Onix commutator")
     robocopy_controller: RobocopyController = Field(..., description="Robocopy controller")
-    zmq_connection: rig.network.ZmqConnection = Field(
-        ..., description="ZMQ socket to connect to LifeAlert monitoring service."
-    )

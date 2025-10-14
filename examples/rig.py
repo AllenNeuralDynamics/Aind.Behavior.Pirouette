@@ -26,7 +26,6 @@ rig_settings = rig.AindBehaviorPirouetteRig(
         port_name="COM6", additional_settings=rig.CommutatorSettings(magnetometer_turn_difference_threshold=1.5)
     ),
     robocopy_controller=rig.RobocopyController(remote_path=r"\\allen\aind\stage\chronic\data"),
-    zmq_connection=abs_rig.network.ZmqConnection(connection_string="@tcp://localhost:5557"),
 )
 
 
