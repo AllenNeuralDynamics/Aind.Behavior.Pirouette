@@ -3,7 +3,7 @@ from typing import Literal
 import aind_behavior_services.rig as rig
 from pydantic import BaseModel, Field, PositiveFloat
 
-__version__ = "0.2.0"
+from aind_behavior_pirouette import __semver__
 
 
 class CommutatorSettings(BaseModel):
@@ -37,7 +37,7 @@ class RobocopyController(BaseModel):
 
 
 class AindBehaviorPirouetteRig(rig.AindBehaviorRigModel):
-    version: Literal[__version__] = __version__
+    version: Literal[__semver__] = __semver__
     camera_controller: rig.cameras.CameraController[rig.cameras.SpinnakerCamera] = Field(
         ..., description="Required camera controller to triggered cameras."
     )
