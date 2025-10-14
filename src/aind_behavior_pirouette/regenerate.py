@@ -1,6 +1,8 @@
 from pathlib import Path
+from typing import Union
 
-from aind_behavior_services import AindBehaviorSessionModel
+import pydantic
+from aind_behavior_services.session import AindBehaviorSessionModel
 from aind_behavior_services.utils import BonsaiSgenSerializers, convert_pydantic_to_bonsai
 
 import aind_behavior_pirouette.rig
@@ -15,10 +17,7 @@ def main():
         aind_behavior_pirouette.rig.AindBehaviorPirouetteRig,
         AindBehaviorSessionModel,
     ]
-
-    for model in models:
-        module_name = "aind_behavior_pirouette"
-        module_name = module_name.split(".")[-1]
+    model = pydantic.RootModel[Union[tuple(models)]]
 
     convert_pydantic_to_bonsai(
         model,
