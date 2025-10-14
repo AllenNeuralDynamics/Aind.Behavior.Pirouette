@@ -1,7 +1,8 @@
 import os
 
-from aind_behavior_pirouette import rig
 from aind_behavior_services import rig as abs_rig
+
+from aind_behavior_pirouette import rig
 
 rig_settings = rig.AindBehaviorPirouetteRig(
     rig_name="PIROUETTE-01",
