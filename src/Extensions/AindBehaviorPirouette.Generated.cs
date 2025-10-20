@@ -35,7 +35,7 @@ namespace AindBehaviorPirouetteDataSchema
     
         public AindBehaviorPirouetteRig()
         {
-            _aindBehaviorServicesPkgVersion = "0.12.2";
+            _aindBehaviorServicesPkgVersion = "0.12.3";
             _version = "0.1.0-rc0";
             _cameraController = new CameraControllerSpinnakerCamera();
             _harpWhiteRabbit = new HarpWhiteRabbit();
@@ -280,8 +280,8 @@ namespace AindBehaviorPirouetteDataSchema
     
         public AindBehaviorSessionModel()
         {
-            _aindBehaviorServicesPkgVersion = "0.12.2";
-            _version = "0.12.2";
+            _aindBehaviorServicesPkgVersion = "0.12.3";
+            _version = "0.12.3";
             _experimenter = new System.Collections.Generic.List<string>();
             _experimentVersion = "";
             _allowDirtyRepo = false;
