@@ -1,5 +1,179 @@
 {
-  "definitions": {
+  "$defs": {
+    "AindBehaviorPirouetteRig": {
+      "properties": {
+        "aind_behavior_services_pkg_version": {
+          "default": "0.12.3",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "title": "aind_behavior_services package version",
+          "type": "string"
+        },
+        "version": {
+          "const": "0.1.0-rc0",
+          "default": "0.1.0-rc0",
+          "title": "Version",
+          "type": "string"
+        },
+        "computer_name": {
+          "description": "Computer name",
+          "title": "Computer Name",
+          "type": "string"
+        },
+        "rig_name": {
+          "description": "Rig name",
+          "title": "Rig Name",
+          "type": "string"
+        },
+        "camera_controller": {
+          "$ref": "#/$defs/CameraController_SpinnakerCamera_",
+          "description": "Required camera controller to triggered cameras."
+        },
+        "harp_white_rabbit": {
+          "$ref": "#/$defs/HarpWhiteRabbit",
+          "description": "Harp white rabbit"
+        },
+        "harp_output_expander": {
+          "$ref": "#/$defs/HarpOutputExpander",
+          "description": "Harp output expander"
+        },
+        "onix_commutator": {
+          "$ref": "#/$defs/OnixCommutator",
+          "description": "Onix commutator"
+        },
+        "robocopy_controller": {
+          "$ref": "#/$defs/RobocopyController",
+          "description": "Robocopy controller"
+        }
+      },
+      "required": [
+        "rig_name",
+        "camera_controller",
+        "harp_white_rabbit",
+        "harp_output_expander",
+        "onix_commutator",
+        "robocopy_controller"
+      ],
+      "title": "AindBehaviorPirouetteRig",
+      "type": "object"
+    },
+    "AindBehaviorSessionModel": {
+      "properties": {
+        "aind_behavior_services_pkg_version": {
+          "default": "0.12.3",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+          "title": "aind_behavior_services package version",
+          "type": "string"
+        },
+        "version": {
+          "const": "0.12.3",
+          "default": "0.12.3",
+          "title": "Version",
+          "type": "string"
+        },
+        "experiment": {
+          "default": null,
+          "description": "Name of the experiment",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Experiment"
+        },
+        "experimenter": {
+          "default": [],
+          "description": "Name of the experimenter",
+          "items": {
+            "type": "string"
+          },
+          "title": "Experimenter",
+          "type": "array"
+        },
+        "date": {
+          "description": "Date of the experiment",
+          "format": "date-time",
+          "title": "Date",
+          "type": "string"
+        },
+        "root_path": {
+          "description": "Root path where data will be logged",
+          "title": "Root Path",
+          "type": "string"
+        },
+        "session_name": {
+          "default": null,
+          "description": "Name of the session. This will be used to create a folder in the root path. If not provided, it will be generated using subject and date.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Session Name"
+        },
+        "subject": {
+          "description": "Name of the subject",
+          "title": "Subject",
+          "type": "string"
+        },
+        "experiment_version": {
+          "default": "",
+          "deprecated": true,
+          "description": "Version of the experiment",
+          "title": "Experiment Version",
+          "type": "string"
+        },
+        "notes": {
+          "default": null,
+          "description": "Notes about the experiment",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Notes"
+        },
+        "commit_hash": {
+          "default": null,
+          "description": "Commit hash of the repository",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Commit Hash"
+        },
+        "allow_dirty_repo": {
+          "default": false,
+          "description": "Allow running from a dirty repository",
+          "title": "Allow Dirty Repo",
+          "type": "boolean"
+        },
+        "skip_hardware_validation": {
+          "default": false,
+          "description": "Skip hardware validation",
+          "title": "Skip Hardware Validation",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "root_path",
+        "subject"
+      ],
+      "title": "AindBehaviorSessionModel",
+      "type": "object"
+    },
     "BaseModel": {
       "properties": {},
       "title": "BaseModel",
@@ -13,12 +187,25 @@
           "title": "Device Type",
           "type": "string"
         },
+        "device_name": {
+          "default": null,
+          "description": "Device name",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Device Name"
+        },
         "additional_settings": {
           "default": null,
           "description": "Additional settings",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -30,7 +217,7 @@
           "description": "Calibration",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -39,7 +226,7 @@
         },
         "cameras": {
           "additionalProperties": {
-            "$ref": "#/definitions/SpinnakerCamera"
+            "$ref": "#/$defs/SpinnakerCamera"
           },
           "description": "Cameras to be instantiated",
           "title": "Cameras",
@@ -89,7 +276,7 @@
           "type": "number"
         },
         "imu_rotation_axis": {
-          "$ref": "#/definitions/Vector3",
+          "$ref": "#/$defs/Vector3",
           "default": {
             "x": 0.0,
             "y": 0.0,
@@ -137,12 +324,25 @@
           "title": "Device Type",
           "type": "string"
         },
+        "device_name": {
+          "default": null,
+          "description": "Device name",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Device Name"
+        },
         "additional_settings": {
           "default": null,
           "description": "Additional settings",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -154,7 +354,7 @@
           "description": "Calibration",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -200,12 +400,25 @@
           "title": "Device Type",
           "type": "string"
         },
+        "device_name": {
+          "default": null,
+          "description": "Device name",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Device Name"
+        },
         "additional_settings": {
           "default": null,
           "description": "Additional settings",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -217,7 +430,7 @@
           "description": "Calibration",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -252,7 +465,7 @@
           "default": [],
           "description": "Connected clock outputs",
           "items": {
-            "$ref": "#/definitions/ConnectedClockOutput"
+            "$ref": "#/$defs/ConnectedClockOutput"
           },
           "title": "Connected Clock Outputs",
           "type": "array"
@@ -272,8 +485,21 @@
           "title": "Device Type",
           "type": "string"
         },
+        "device_name": {
+          "default": null,
+          "description": "Device name",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Device Name"
+        },
         "additional_settings": {
-          "$ref": "#/definitions/CommutatorSettings",
+          "$ref": "#/$defs/CommutatorSettings",
           "default": {
             "magnetometer_magnitude_threshold": 50.0,
             "magnetometer_override_sampling": 2.0,
@@ -291,7 +517,7 @@
           "description": "Calibration",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -367,12 +593,25 @@
           "title": "Device Type",
           "type": "string"
         },
+        "device_name": {
+          "default": null,
+          "description": "Device name",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Device Name"
+        },
         "additional_settings": {
           "default": null,
           "description": "Additional settings",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -384,7 +623,7 @@
           "description": "Calibration",
           "oneOf": [
             {
-              "$ref": "#/definitions/BaseModel"
+              "$ref": "#/$defs/BaseModel"
             },
             {
               "type": "null"
@@ -446,7 +685,7 @@
           "description": "ADC bit depth. If None will be left as default.",
           "oneOf": [
             {
-              "$ref": "#/definitions/SpinnakerCameraAdcBitDepth"
+              "$ref": "#/$defs/SpinnakerCameraAdcBitDepth"
             },
             {
               "type": "null"
@@ -458,7 +697,7 @@
           "description": "Pixel format. If None will be left as default.",
           "oneOf": [
             {
-              "$ref": "#/definitions/SpinnakerCameraPixelFormat"
+              "$ref": "#/$defs/SpinnakerCameraPixelFormat"
             },
             {
               "type": "null"
@@ -466,7 +705,7 @@
           ]
         },
         "region_of_interest": {
-          "$ref": "#/definitions/Rect",
+          "$ref": "#/$defs/Rect",
           "default": {
             "x": 0,
             "y": 0,
@@ -480,7 +719,7 @@
           "description": "Video writer. If not provided, no video will be saved.",
           "oneOf": [
             {
-              "$ref": "#/definitions/VideoWriter"
+              "$ref": "#/$defs/VideoWriter"
             },
             {
               "type": "null"
@@ -831,17 +1070,17 @@
     "VideoWriter": {
       "discriminator": {
         "mapping": {
-          "FFMPEG": "#/definitions/VideoWriterFfmpeg",
-          "OPENCV": "#/definitions/VideoWriterOpenCv"
+          "FFMPEG": "#/$defs/VideoWriterFfmpeg",
+          "OPENCV": "#/$defs/VideoWriterOpenCv"
         },
         "propertyName": "video_writer_type"
       },
       "oneOf": [
         {
-          "$ref": "#/definitions/VideoWriterFfmpeg"
+          "$ref": "#/$defs/VideoWriterFfmpeg"
         },
         {
-          "$ref": "#/definitions/VideoWriterOpenCv"
+          "$ref": "#/$defs/VideoWriterOpenCv"
         }
       ]
     },
@@ -913,59 +1152,5 @@
       "title": "VideoWriterOpenCv",
       "type": "object"
     }
-  },
-  "properties": {
-    "aind_behavior_services_pkg_version": {
-      "default": "0.10.2",
-      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-      "title": "aind_behavior_services package version",
-      "type": "string"
-    },
-    "version": {
-      "const": "0.2.0",
-      "default": "0.2.0",
-      "title": "Version",
-      "type": "string"
-    },
-    "computer_name": {
-      "description": "Computer name",
-      "title": "Computer Name",
-      "type": "string"
-    },
-    "rig_name": {
-      "description": "Rig name",
-      "title": "Rig Name",
-      "type": "string"
-    },
-    "camera_controller": {
-      "$ref": "#/definitions/CameraController_SpinnakerCamera_",
-      "description": "Required camera controller to triggered cameras."
-    },
-    "harp_white_rabbit": {
-      "$ref": "#/definitions/HarpWhiteRabbit",
-      "description": "Harp white rabbit"
-    },
-    "harp_output_expander": {
-      "$ref": "#/definitions/HarpOutputExpander",
-      "description": "Harp output expander"
-    },
-    "onix_commutator": {
-      "$ref": "#/definitions/OnixCommutator",
-      "description": "Onix commutator"
-    },
-    "robocopy_controller": {
-      "$ref": "#/definitions/RobocopyController",
-      "description": "Robocopy controller"
-    }
-  },
-  "required": [
-    "rig_name",
-    "camera_controller",
-    "harp_white_rabbit",
-    "harp_output_expander",
-    "onix_commutator",
-    "robocopy_controller"
-  ],
-  "title": "AindBehaviorPirouetteRig",
-  "type": "object"
+  }
 }
