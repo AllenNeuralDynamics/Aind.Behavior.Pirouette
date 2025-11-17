@@ -91,7 +91,7 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FormatFileName.bonsai">
-                    <Name />
+                    <Name>OnixEphys_Clock</Name>
                     <Extension>bin</Extension>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
@@ -136,7 +136,7 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FormatFileName.bonsai">
-                    <Name />
+                    <Name>OnixEphys_HubClock</Name>
                     <Extension>bin</Extension>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
@@ -181,7 +181,7 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FormatFileName.bonsai">
-                    <Name />
+                    <Name>OnixEphys_AmplifierData</Name>
                     <Extension>bin</Extension>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
@@ -211,7 +211,7 @@
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Format">
-                    <Format>{{start_sample: {0}}}</Format>
+                    <Format>{{"start_sample": {0}}}</Format>
                     <Selector>it</Selector>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
@@ -224,7 +224,7 @@
                     <Name>deviceName</Name>
                   </Expression>
                   <Expression xsi:type="Format">
-                    <Format>{0}_SampleMetadata.json</Format>
+                    <Format>{0}_SampleMetadata</Format>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
                     <PropertyMappings>
@@ -232,8 +232,8 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FormatFileName.bonsai">
-                    <Name />
-                    <Extension>bin</Extension>
+                    <Name>OnixEphys_SampleMetadata</Name>
+                    <Extension>json</Extension>
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
                     <PropertyMappings>
