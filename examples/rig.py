@@ -5,11 +5,10 @@ from aind_behavior_services import rig as abs_rig
 from aind_behavior_pirouette import rig
 
 rig_settings = rig.AindBehaviorPirouetteRig(
-    rig_name="PIROUETTE-01",
+    rig_name="Chronic.2",
     camera_controller=abs_rig.cameras.CameraController[abs_rig.cameras.SpinnakerCamera](
         frame_rate=60,
         cameras={
-            """More cameras can be added here"""
             "TopCamera": abs_rig.cameras.SpinnakerCamera(
                 serial_number="23373886",
                 binning=1,
@@ -21,7 +20,7 @@ rig_settings = rig.AindBehaviorPirouetteRig(
         },
     ),
     harp_output_expander=abs_rig.harp.HarpOutputExpander(port_name="COM5"),
-    harp_white_rabbit=abs_rig.harp.HarpWhiteRabbit(port_name="COM3"),
+    harp_white_rabbit=abs_rig.harp.HarpWhiteRabbit(port_name="COM10"),
     onix_commutator=rig.OnixCommutator(
         port_name="COM6", additional_settings=rig.CommutatorSettings(magnetometer_turn_difference_threshold=1.5)
     ),
