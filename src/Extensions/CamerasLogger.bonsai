@@ -270,7 +270,7 @@
                           <Combinator xsi:type="p2:FfmpegVideoWriter">
                             <p2:Overwrite>false</p2:Overwrite>
                             <p2:FrameRate>0</p2:FrameRate>
-                            <p2:Verbosity>Verbose</p2:Verbosity>
+                            <p2:Verbosity>Warning</p2:Verbosity>
                             <p2:OutputArguments>-vf "scale=out_color_matrix=bt709:out_range=full" -c:v h264_nvenc -pix_fmt nv12 -color_range full -colorspace bt709 -color_trc linear -tune hq -preset p4 -rc vbr -cq 12 -b:v 0M -maxrate 700M -bufsize 350M</p2:OutputArguments>
                             <p2:InputArguments>-colorspace rgb -color_primaries bt709 -color_trc linear</p2:InputArguments>
                           </Combinator>
