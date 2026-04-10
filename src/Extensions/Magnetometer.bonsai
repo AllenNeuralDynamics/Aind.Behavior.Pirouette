@@ -7,7 +7,7 @@
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
-                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:p2="clr-namespace:AllenNeuralDynamics.Core;assembly=AllenNeuralDynamics.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -124,27 +124,24 @@
         <scr:Name>NormalizeToTurns</scr:Name>
         <scr:Expression>it / (Math.Pi * 2)</scr:Expression>
       </Expression>
-      <Expression xsi:type="aeon:StateRecoverySubject">
-        <Name>AccumulatedMagnetTurnsRecovery</Name>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="io:ReadAllText">
+          <io:Path>AccumulatedMagnetTurnsRecovery.txt</io:Path>
+        </Combinator>
       </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>AccumulatedMagnetTurnsRecovery</Name>
+      <Expression xsi:type="Parse">
+        <Pattern>%f</Pattern>
+        <Separator />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Take">
           <rx:Count>1</rx:Count>
         </Combinator>
       </Expression>
-      <Expression xsi:type="PropertyMapping">
-        <PropertyMappings>
-          <Property Name="Value" />
-        </PropertyMappings>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:WithLatestFrom" />
       </Expression>
-      <Expression xsi:type="Add">
-        <Operand xsi:type="DoubleProperty">
-          <Value>-0.016357421874998185</Value>
-        </Operand>
-      </Expression>
+      <Expression xsi:type="Add" />
       <Expression xsi:type="rx:PublishSubject">
         <Name>AccumulatedMagnetTurns</Name>
       </Expression>
@@ -183,7 +180,7 @@
       </Expression>
       <Expression xsi:type="Subtract">
         <Operand xsi:type="DoubleProperty">
-          <Value>-0.13395500183105469</Value>
+          <Value>-0.39739990234375</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
@@ -236,6 +233,17 @@
       <Expression xsi:type="MulticastSubject">
         <Name>CommutatorTurns</Name>
       </Expression>
+      <Expression xsi:type="Format">
+        <Format>{0}</Format>
+        <Selector>it</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="io:WriteAllText">
+          <io:Path>AccumulatedMagnetTurnsRecovery.txt</io:Path>
+          <io:Overwrite>true</io:Overwrite>
+          <io:Append>false</io:Append>
+        </Combinator>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -258,12 +266,13 @@
       <Edge From="19" To="20" Label="Source1" />
       <Edge From="20" To="21" Label="Source1" />
       <Edge From="21" To="22" Label="Source1" />
-      <Edge From="22" To="23" Label="Source1" />
-      <Edge From="23" To="27" Label="Source1" />
+      <Edge From="22" To="26" Label="Source1" />
+      <Edge From="23" To="24" Label="Source1" />
       <Edge From="24" To="25" Label="Source1" />
-      <Edge From="25" To="26" Label="Source1" />
-      <Edge From="26" To="27" Label="Source2" />
+      <Edge From="25" To="26" Label="Source2" />
+      <Edge From="26" To="27" Label="Source1" />
       <Edge From="27" To="28" Label="Source1" />
+      <Edge From="27" To="47" Label="Source1" />
       <Edge From="28" To="35" Label="Source1" />
       <Edge From="29" To="30" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
@@ -282,6 +291,7 @@
       <Edge From="43" To="44" Label="Source2" />
       <Edge From="44" To="45" Label="Source1" />
       <Edge From="45" To="46" Label="Source1" />
+      <Edge From="47" To="48" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
