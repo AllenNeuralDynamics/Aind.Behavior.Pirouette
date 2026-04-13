@@ -180,7 +180,7 @@
       </Expression>
       <Expression xsi:type="Subtract">
         <Operand xsi:type="DoubleProperty">
-          <Value>-0.39739990234375</Value>
+          <Value>-0.000291000003926456</Value>
         </Operand>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
@@ -232,6 +232,11 @@
       </Expression>
       <Expression xsi:type="MulticastSubject">
         <Name>CommutatorTurns</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:SampleInterval">
+          <rx:Interval>PT0.1S</rx:Interval>
+        </Combinator>
       </Expression>
       <Expression xsi:type="Format">
         <Format>{0}</Format>
@@ -292,6 +297,7 @@
       <Edge From="44" To="45" Label="Source1" />
       <Edge From="45" To="46" Label="Source1" />
       <Edge From="47" To="48" Label="Source1" />
+      <Edge From="48" To="49" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

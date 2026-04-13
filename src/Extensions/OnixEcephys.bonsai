@@ -124,6 +124,12 @@
               <Combinator xsi:type="rx:WithLatestFrom" />
             </Expression>
             <Expression xsi:type="Add" />
+            <Expression xsi:type="WorkflowOutput" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.1S</rx:Interval>
+              </Combinator>
+            </Expression>
             <Expression xsi:type="Format">
               <Format>{0}</Format>
               <Selector>it</Selector>
@@ -135,7 +141,6 @@
                 <io:Append>false</io:Append>
               </Combinator>
             </Expression>
-            <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="7" Label="Source1" />
@@ -151,8 +156,9 @@
             <Edge From="10" To="11" Label="Source2" />
             <Edge From="11" To="12" Label="Source1" />
             <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="14" Label="Source1" />
+            <Edge From="12" To="14" Label="Source1" />
             <Edge From="14" To="15" Label="Source1" />
+            <Edge From="15" To="16" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
