@@ -184,26 +184,18 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Buffer">
-                <dsp:Count>30000</dsp:Count>
-                <dsp:Skip xsi:nil="true" />
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Submatrix">
-                <dsp:StartRow>0</dsp:StartRow>
-                <dsp:EndRow xsi:nil="true" />
-                <dsp:StartCol>0</dsp:StartCol>
-                <dsp:EndCol xsi:nil="true" />
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:FrequencyFilter">
                 <dsp:SampleRate>30000</dsp:SampleRate>
                 <dsp:Cutoff1>300</dsp:Cutoff1>
                 <dsp:Cutoff2>6000</dsp:Cutoff2>
-                <dsp:KernelLength>3000</dsp:KernelLength>
+                <dsp:KernelLength>30</dsp:KernelLength>
                 <dsp:FilterType>BandPass</dsp:FilterType>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Buffer">
+                <dsp:Count>30000</dsp:Count>
+                <dsp:Skip xsi:nil="true" />
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -270,13 +262,12 @@
             <Edge From="9" To="10" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
             <Edge From="11" To="12" Label="Source1" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="12" To="14" Label="Source1" />
-            <Edge From="13" To="16" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="16" Label="Source2" />
+            <Edge From="11" To="13" Label="Source1" />
+            <Edge From="12" To="15" Label="Source1" />
+            <Edge From="13" To="14" Label="Source1" />
+            <Edge From="14" To="15" Label="Source2" />
+            <Edge From="15" To="16" Label="Source1" />
             <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="18" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
