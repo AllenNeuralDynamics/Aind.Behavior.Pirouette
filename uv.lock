@@ -22,7 +22,7 @@ wheels = [
 
 [[package]]
 name = "aind-behavior-pirouette"
-version = "0.1.1rc3"
+version = "0.1.1rc4"
 source = { editable = "." }
 dependencies = [
     { name = "aind-behavior-services" },
