@@ -294,7 +294,7 @@
             </Expression>
             <Expression xsi:type="GreaterThan">
               <Operand xsi:type="DoubleProperty">
-                <Value>2</Value>
+                <Value>2.5</Value>
               </Operand>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
