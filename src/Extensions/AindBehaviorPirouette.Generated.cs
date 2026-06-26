@@ -36,7 +36,7 @@ namespace AindBehaviorPirouetteDataSchema
         public AindBehaviorPirouetteRig()
         {
             _aindBehaviorServicesPkgVersion = "0.12.3";
-            _version = "0.1.1-rc5";
+            _version = "0.1.1-rc6";
             _cameraController = new CameraControllerSpinnakerCamera();
             _harpWhiteRabbit = new HarpWhiteRabbit();
             _harpOutputExpander = new HarpOutputExpander();
