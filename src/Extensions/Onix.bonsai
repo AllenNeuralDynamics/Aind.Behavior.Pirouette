@@ -299,7 +299,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="Format">
-        <Format>Noise floor increased by {0} fold</Format>
+        <Format>Warning! Noise floor increased by {0} fold</Format>
         <Selector>it</Selector>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
