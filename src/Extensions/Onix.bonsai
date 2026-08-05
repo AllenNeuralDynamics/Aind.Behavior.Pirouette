@@ -172,6 +172,11 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Retry" />
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:ObserveOn">
+          <rx:Scheduler>NewThreadScheduler</rx:Scheduler>
+        </Combinator>
+      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>BaselineComparison</Name>
         <Description>Current to baseline signal floor comparison</Description>
@@ -179,6 +184,14 @@
           <Nodes>
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Submatrix">
+                <dsp:StartRow>150</dsp:StartRow>
+                <dsp:EndRow>250</dsp:EndRow>
+                <dsp:StartCol>0</dsp:StartCol>
+                <dsp:EndCol xsi:nil="true" />
+              </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:ConvertScale">
@@ -189,23 +202,17 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:Buffer">
-                <dsp:Count>3000</dsp:Count>
-                <dsp:Skip xsi:nil="true" />
+                <dsp:Count>300000</dsp:Count>
+                <dsp:Skip>1800000</dsp:Skip>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:FrequencyFilter">
                 <dsp:SampleRate>30000</dsp:SampleRate>
-                <dsp:Cutoff1>300</dsp:Cutoff1>
-                <dsp:Cutoff2>6000</dsp:Cutoff2>
-                <dsp:KernelLength>30</dsp:KernelLength>
-                <dsp:FilterType>BandPass</dsp:FilterType>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Buffer">
-                <dsp:Count>30000</dsp:Count>
-                <dsp:Skip xsi:nil="true" />
+                <dsp:Cutoff1>4000</dsp:Cutoff1>
+                <dsp:Cutoff2>0</dsp:Cutoff2>
+                <dsp:KernelLength>256</dsp:KernelLength>
+                <dsp:FilterType>HighPass</dsp:FilterType>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -215,18 +222,6 @@
               <Combinator xsi:type="dsp:Reduce">
                 <dsp:Axis>0</dsp:Axis>
                 <dsp:Operation>Avg</dsp:Operation>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Average" />
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Val0</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Buffer">
-                <dsp:Count>60</dsp:Count>
-                <dsp:Skip xsi:nil="true" />
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -270,15 +265,12 @@
             <Edge From="7" To="8" Label="Source1" />
             <Edge From="8" To="9" Label="Source1" />
             <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="9" To="11" Label="Source1" />
+            <Edge From="10" To="13" Label="Source1" />
             <Edge From="11" To="12" Label="Source1" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="12" To="14" Label="Source1" />
-            <Edge From="13" To="16" Label="Source1" />
+            <Edge From="12" To="13" Label="Source2" />
+            <Edge From="13" To="14" Label="Source1" />
             <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="16" Label="Source2" />
-            <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="18" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -307,7 +299,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="Format">
-        <Format>Noise floor increased by {0} fold</Format>
+        <Format>Warning! Noise floor increased by {0} fold</Format>
         <Selector>it</Selector>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
@@ -377,14 +369,15 @@
       <Edge From="16" To="17" Label="Source1" />
       <Edge From="17" To="18" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
-      <Edge From="20" To="21" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
       <Edge From="21" To="22" Label="Source1" />
       <Edge From="22" To="23" Label="Source1" />
-      <Edge From="24" To="25" Label="Source1" />
-      <Edge From="26" To="27" Label="Source1" />
+      <Edge From="23" To="24" Label="Source1" />
+      <Edge From="25" To="26" Label="Source1" />
       <Edge From="27" To="28" Label="Source1" />
-      <Edge From="29" To="30" Label="Source1" />
+      <Edge From="28" To="29" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
+      <Edge From="31" To="32" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
