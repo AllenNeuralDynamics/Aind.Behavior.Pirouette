@@ -46,16 +46,22 @@
           <zmq:ConnectionString>@tcp://localhost:5557</zmq:ConnectionString>
         </Combinator>
       </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>NoiseDetected</Name>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="SubscribeSubject">
+          <Name>NoiseDetected</Name>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Take">
-          <rx:Count>3</rx:Count>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:Take">
+            <rx:Count>3</rx:Count>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="MulticastSubject">
-        <Name>Message</Name>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="MulticastSubject">
+          <Name>Message</Name>
+        </Builder>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="RigPath" />
