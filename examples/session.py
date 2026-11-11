@@ -3,8 +3,8 @@ import os
 from aind_behavior_services.session import AindBehaviorSessionModel
 
 session_settings = AindBehaviorSessionModel(
-    experiment="<experiment name>",
-    experimenter=["<experimenter name>"],
+    experiment="Oddball",
+    experimenter=["Brandon"],
     root_path=r"D:\Data",
     allow_dirty_repo=True,
     skip_hardware_validation=True,
