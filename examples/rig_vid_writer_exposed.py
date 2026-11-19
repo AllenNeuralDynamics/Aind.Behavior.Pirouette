@@ -7,20 +7,22 @@ from aind_behavior_pirouette import rig
 FRAME_RATE = 60
 
 # Same filter and encoder settings as the current JSON output.
+# Matroska output: no moov atom to lose, so a file that is cut off stays readable.
 OUTPUT_ARGUMENTS = (
-    '-vf "scale=out_color_matrix=bt709:out_range=full,format=bgr24,scale=out_range=full" '
+    '-vf "scale=out_range=full,setparams=range=full:colorspace=bt709:color_primaries=bt709:color_trc=linear" '
     "-c:v h264_nvenc -pix_fmt yuv420p -color_range full -colorspace bt709 "
-    "-color_trc linear -tune hq -preset p4 -rc vbr -cq 12 -b:v 0M "
+    "-color_trc linear -tune hq -preset p3 -rc vbr -cq 18 -b:v 0M "
     '-metadata author="Allen Institute for Neural Dynamics" '
-    "-maxrate 700M -bufsize 350M"
+    "-maxrate 700M -bufsize 350M "
+    "-f matroska -write_crc32 0"
 )
 INPUT_ARGUMENTS = "-colorspace bt709 -color_primaries bt709 -color_range full -color_trc linear"
 
-# Optional: fragmented MP4, so a file that is not closed cleanly stays playable.
-# Off by default. Check that your downstream tools read it before turning it on.
-FRAGMENTED_MP4 = True
-if FRAGMENTED_MP4:
-    OUTPUT_ARGUMENTS += " -movflags +frag_keyframe+empty_moov+default_base_moof"
+# # Optional: fragmented MP4, so a file that is not closed cleanly stays playable.
+# # Off by default. Check that your downstream tools read it before turning it on.
+# FRAGMENTED_MP4 = False
+# if FRAGMENTED_MP4:
+#     OUTPUT_ARGUMENTS += " -movflags +frag_keyframe+empty_moov+default_base_moof"
 
 
 def make_video_writer() -> abs_rig.cameras.VideoWriterFfmpeg:
@@ -34,12 +36,12 @@ def make_video_writer() -> abs_rig.cameras.VideoWriterFfmpeg:
 
 
 rig_settings = rig.AindBehaviorPirouetteRig(
-    rig_name="Chronic.6",
+    rig_name="Chronic.5",
     camera_controller=abs_rig.cameras.CameraController[abs_rig.cameras.SpinnakerCamera](
         frame_rate=FRAME_RATE,
         cameras={
             "TopCamera": abs_rig.cameras.SpinnakerCamera(
-                serial_number="26034882",
+                serial_number="25502910",
                 binning=1,
                 exposure=5000,
                 gain=10,
@@ -47,7 +49,7 @@ rig_settings = rig.AindBehaviorPirouetteRig(
                 video_writer=make_video_writer(),
             ),
             "PortCamera": abs_rig.cameras.SpinnakerCamera(
-                serial_number="25502892",
+                serial_number="26034883",
                 binning=1,
                 exposure=5000,
                 gain=10,
@@ -59,7 +61,7 @@ rig_settings = rig.AindBehaviorPirouetteRig(
     harp_output_expander=abs_rig.harp.HarpOutputExpander(port_name="COM6"),
     harp_white_rabbit=abs_rig.harp.HarpWhiteRabbit(port_name="COM5"),
     onix_commutator=rig.OnixCommutator(
-        port_name="COM3", additional_settings=rig.CommutatorSettings(magnetometer_turn_difference_threshold=1.5)
+        port_name="COM4", additional_settings=rig.CommutatorSettings(magnetometer_turn_difference_threshold=1.5)
     ),
     robocopy_controller=rig.RobocopyController(remote_path=r"\\allen\aind\stage\chronic\data"),
 )
